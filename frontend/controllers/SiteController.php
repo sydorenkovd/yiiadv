@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-
+use yii\helpers\Url;
 use frontend\models\Interview;
 use frontend\models\ContactFormexample;
 use Yii;
@@ -27,6 +27,9 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
+            'accessOnce' => [
+            'class'=> \frontend\behaviors\AccessOnce::className()
+        ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
@@ -63,6 +66,8 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
+                'minLength' => 3,
+                'maxLength' => 4,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
@@ -143,8 +148,8 @@ class SiteController extends Controller
             }
 //            return $this->refresh();
         }
-        else{
-            return $this->render('contactexample',[
+        else {
+            return $this->render('contactexample', [
                 'model' => $model
             ]);
         }
@@ -165,8 +170,8 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
-                // делаем что-то, если форма прошла валидацию
-                return;
+                Yii::$app->session->setFlash('success', 'Thanks for time, you\'ll be notified at near time');
+                return $this->redirect(Url::home());
             }
         }
 

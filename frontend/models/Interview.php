@@ -16,6 +16,7 @@ use Yii;
  */
 class Interview extends \yii\db\ActiveRecord
 {
+    public $verifyCode;
     /**
      * @inheritdoc
      */
@@ -31,9 +32,19 @@ class Interview extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'sex', 'planets', 'astronauts', 'planet'], 'required'],
-            [['sex'], 'boolean'],
-            [['planet'], 'integer'],
-            [['name', 'planets', 'astronauts'], 'string', 'max' => 255]
+            ['name', 'string'],
+            ['sex', 'boolean', 'message' => 'Unknown male'],
+            [
+                ['planets', 'planet'],
+            'in',
+                'range'=> range(0, 7),
+            'message' => 'Uncorrest list of planet',
+            'allowArray'=> 1],
+            ['astronauts', 'in',
+                'range'=> range(0,5),
+                'message' => 'Uncorrect astronauts list',
+                'allowArray' => 2],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -48,7 +59,7 @@ class Interview extends \yii\db\ActiveRecord
             'planets' => 'What\'s the planets?',
             'astronauts' => 'what Astronauts do you know',
             'planet' => 'what Planet do you want to go',
-            'verifyCode' => 'checking code'
+            'verifyCode' => 'checking code',
         ];
     }
 }
