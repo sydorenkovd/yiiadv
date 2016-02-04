@@ -43,12 +43,12 @@ class Interview extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'name' => 'Name',
             'sex' => 'Sex',
-            'planets' => 'Planets',
-            'astronauts' => 'Astronauts',
-            'planet' => 'Planet',
+            'planets' => 'What\'s the planets?',
+            'astronauts' => 'what Astronauts do you know',
+            'planet' => 'what Planet do you want to go',
+            'verifyCode' => 'checking code'
         ];
     }
 }

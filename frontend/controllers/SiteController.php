@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 
-use frontend\models\LocalMigrate;
+use frontend\models\Interview;
 use frontend\models\ContactFormexample;
 use Yii;
 use common\models\LoginForm;
@@ -159,6 +159,22 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionInterview(){
+        $model = new Interview();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                // делаем что-то, если форма прошла валидацию
+                return;
+            }
+        }
+
+        return $this->render('interview', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionExample()
 {
     return $this->render('example');
