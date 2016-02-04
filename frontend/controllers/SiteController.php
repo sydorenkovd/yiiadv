@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 use yii\helpers\Url;
-use frontend\models\Interview;
+use common\models\Interview;
 use frontend\models\ContactFormexample;
 use Yii;
 use common\models\LoginForm;
@@ -27,9 +27,10 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'accessOnce' => [
-            'class'=> \frontend\behaviors\AccessOnce::className()
-        ],
+//            'accessOnce' => [
+//                'class' => \frontend\behaviors\AccessOnce::className(),
+//                'actions' => ['interview']
+//            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
@@ -138,17 +139,18 @@ class SiteController extends Controller
             ]);
         }
     }
-    public function actionContactexample(){
+
+    public function actionContactexample()
+    {
         $model = new ContactFormexample();
-        if($model->load(Yii::$app->request->post()) && $model->validate()){
-            if($model->submit()){
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->submit()) {
                 Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else{
+            } else {
                 Yii::$app->session->setFlash('error', 'Something went wrong');
             }
 //            return $this->refresh();
-        }
-        else {
+        } else {
             return $this->render('contactexample', [
                 'model' => $model
             ]);
@@ -165,25 +167,26 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionInterview(){
+    public function actionInterview()
+    {
         $model = new Interview();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('success', 'Thanks for time, you\'ll be notified at near time');
                 return $this->redirect(Url::home());
-            }
-        }
 
+        }
+        $this->detachBehaviors('accessOnce');
         return $this->render('interview', [
             'model' => $model,
         ]);
     }
 
     public function actionExample()
-{
-    return $this->render('example');
-}
+    {
+        return $this->render('example');
+    }
+
     /**
      * Signs user up.
      *

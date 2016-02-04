@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 
@@ -61,5 +61,15 @@ class Interview extends \yii\db\ActiveRecord
             'planet' => 'what Planet do you want to go',
             'verifyCode' => 'checking code',
         ];
+    }
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->planets = implode(',', $this->planets);
+            $this->astronauts = implode(',', $this->astronauts);
+            return true;
+        }
+
+        return false;
     }
 }
