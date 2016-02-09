@@ -28,17 +28,25 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'JobBase',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'Categories', 'url' => ['/categories/index']],
+        ['label' => 'Jobs', 'url' => ['/jobs/index']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $menuItems,
+    ]);
+    ?>
+    <?php
+    $menuItems = [];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -55,6 +63,7 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
+
 
     <div class="container">
         <?= Breadcrumbs::widget([
