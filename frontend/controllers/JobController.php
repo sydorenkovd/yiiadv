@@ -21,7 +21,8 @@ class JobController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $foo = "bar";
+        return $this->render('index', ['foo'=> $foo]);
     }
 
 }
