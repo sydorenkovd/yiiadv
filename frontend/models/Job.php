@@ -91,13 +91,15 @@ class Job extends \yii\db\ActiveRecord
             $yes = "today ";
             if($pr < 7200) {
                 $timeAgo = round(($pr - 3600)/60) . ' minutes ago ';
+                return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
             }
             if($pr > 7200 && $pr < 89000){
                 $timeAgo = round(($pr - 3600)/3600) . ' hours ago ';
+                return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
             }
         }
         /*
-         * Отображает "вчера", если просматриваем вакансии за вчера, первого числа месяца
+         * отображать дату если вакансия опубликована вчера, то есть с расхождением на один д
          * $s - модификатор смены часовых поясов
          */
         $s = 1;
@@ -106,13 +108,11 @@ class Job extends \yii\db\ActiveRecord
         }
         if (date('d', $phpdate) == date('d', time()) - $s) {
             $yes = "yesterday ";
+            return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
         }
-
-//        echo date('d', $phpdate);
-        echo date('H', time());
-//        if($pr > 89000 && $pr < 176399){
-//            $yes = 'yesterday ';
-//        }
+/*
+ * Отображает "вчера", если просматриваем вакансии за вчера, первого числа месяца
+ */
         $mounth31 = ['01', '03', '05', '07', '09', '11', '12'];
         $i = -1;
         while ($i < count($mounth31) - 1) {
@@ -138,7 +138,7 @@ class Job extends \yii\db\ActiveRecord
         /*
          * Количество прошедших дней со дня размещения вакансии
          */
-        if($pr > 176400 && $pr < 2600000){
+        if($pr > 89000 && $pr < 2600000){
             $timeAgo = round(($pr - 3600)/86400) . ' days ago ';
         }
         /*
