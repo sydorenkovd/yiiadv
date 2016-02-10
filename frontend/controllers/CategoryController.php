@@ -21,6 +21,26 @@ use frontend\models\Category;
 
 class CategoryController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+//            'accessOnce' => [
+//                'class' => \frontend\behaviors\AccessOnce::className(),
+//                'actions' => ['interview']
+//            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create'],
+                'rules' => [
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
     public function actionIndex()
     {
         $query = Category::find();

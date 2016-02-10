@@ -21,6 +21,26 @@ use yii\filters\AccessControl;
 
 class JobController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+//            'accessOnce' => [
+//                'class' => \frontend\behaviors\AccessOnce::className(),
+//                'actions' => ['interview']
+//            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create', 'edit', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create', 'edit', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
     public function actionIndex()
     {
         $query = Job::find();
@@ -37,7 +57,10 @@ class JobController extends Controller
     public function actionEdit($id)
     {
         $job = Job::findOne(['id' => $id]);
-
+        if (Yii::$app->user->identity->getId() != $job->user_id){
+            Yii::$app->session->setFlash('restricted', 'Deny!');
+            return $this->redirect(Yii::$app->urlManager->createUrl('job'));
+    }
         if ($job->load(Yii::$app->request->post()) && $job->validate()) {
             $job->save();
             Yii::$app->session->setFlash('success', 'Job has edited successfully!');
@@ -71,6 +94,10 @@ class JobController extends Controller
     public function actionDelete($id)
     {
         $job = Job::findOne($id);
+        if (Yii::$app->user->identity->getId() != $job->user_id){
+            Yii::$app->session->setFlash('restricted', 'Deny!');
+            return $this->redirect(Yii::$app->urlManager->createUrl('job'));
+        }
         $job->delete();
         Yii::$app->session->setFlash('success', 'Job has deleted!');
         return $this->redirect(Yii::$app->urlManager->createUrl('job'));

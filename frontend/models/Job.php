@@ -154,7 +154,7 @@ class Job extends \yii\db\ActiveRecord
         return $this->hasMany(Job::className(), ['category_id' => 'id']);
     }
     public function beforeSave($insert){
-        $this->user_id = 1;
+        $this->user_id = Yii::$app->user->identity->getId();
         return parent::beforeSave($insert);
     }
 //    public function beforeValidate(){
