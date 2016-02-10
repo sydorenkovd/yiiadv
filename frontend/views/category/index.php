@@ -3,6 +3,8 @@
 use Yii\helpers\Html;
 use yii\widgets\LinkPager;
 
+$this->title = 'Category';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php //if(Yii::$app->session->getFlash('success') !== null) : ?>
 <!--    <h1 class="alert alert-success">--><?//= Yii::$app->session->getFlash('success'); ?><!--</h1>-->
@@ -15,7 +17,7 @@ use yii\widgets\LinkPager;
 <ul class="list-group">
     <?php foreach($categories as $category) : ?>
     <li class="list-group-item">
-        <a href="<?php echo Yii::$app->urlManager->createUrl(['job/order', 'category' => $category->id ]); ?>">
+        <a href="<?php echo Yii::$app->urlManager->createUrl(['category/orders', 'category' => $category->id ]); ?>">
             <?php echo $category->name; ?></a></li>
     <?php endforeach; ?>
 </ul>

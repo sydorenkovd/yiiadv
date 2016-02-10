@@ -58,20 +58,20 @@ class JobController extends Controller
         ]);
     }
 
-    public function actionOrder($category)
-    {
-        $query = Job::find()->where(['category_id' => $category]);
-        $pagination = new Pagination([
-            'defaultPageSize' => 5,
-            'totalCount' => $query->count(),
-        ]);
-        $orders = $query->orderBy('create_date DESC')
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)->all();
-        return $this->render('orders', ['orders' => $orders,
-        'pagination' => $pagination,
-        ]);
-    }
+//    public function actionOrder($category)
+//    {
+//        $query = Job::find()->where(['category_id' => $category]);
+//        $pagination = new Pagination([
+//            'defaultPageSize' => 5,
+//            'totalCount' => $query->count(),
+//        ]);
+//        $orders = $query->orderBy('create_date DESC')
+//            ->offset($pagination->offset)
+//            ->limit($pagination->limit)->all();
+//        return $this->render('orders', ['orders' => $orders,
+//        'pagination' => $pagination,
+//        ]);
+//    }
 
     public function actionEdit($id)
     {

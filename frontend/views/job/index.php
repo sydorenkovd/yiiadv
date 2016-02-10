@@ -4,6 +4,8 @@ use Yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\models\Job;
 
+$this->title = 'Job';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
     <h1 class="page-header">Jobs:
         <a class="btn btn-primary pull-right" href="<?php echo Yii::$app

@@ -4,6 +4,10 @@ use Yii\helpers\Html;
 use yii\widgets\LinkPager;
 use frontend\models\Job;
 use frontend\models\Category;
+
+$this->title = 'Orders by category';
+$this->params['breadcrumbs'][] = ['label' => 'Category', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Group by category';
 ?>
     <h1 class="page-header">Jobs: <?= Category::findOne($_GET['category'])->name; ?>
         <a class="btn btn-primary pull-right" href="<?php echo Yii::$app

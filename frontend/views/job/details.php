@@ -1,9 +1,14 @@
 <?php
 use frontend\models\Category;
 use frontend\models\Job;
+use yii\widgets\Breadcrumbs;
 /*
  * accepted $job object from JobController
  */
+$this->title = 'Details';
+$this->params['breadcrumbs'][] = ['label' => 'Job', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Details';
+
 ?>
 
 <a href="<?= Yii::$app->urlManager

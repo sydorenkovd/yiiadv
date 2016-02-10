@@ -6,6 +6,10 @@ use frontend\models\Category;
 /* @var $this yii\web\View */
 /* @var $job frontend\models\Job */
 /* @var $form ActiveForm */
+$this->title = 'Edit';
+$this->params['breadcrumbs'][] = ['label' => 'Job', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Details', 'url' => ['job/details', 'id' => $job->id ]];
+$this->params['breadcrumbs'][] = 'Edit';
 ?>
 <div class="job-edit">
 <h1 class="page-header">Edit Job</h1>
@@ -45,7 +49,6 @@ use frontend\models\Category;
     <div class="form-group">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
     </div>
-    <? var_dump($job->is_published); ?>
     <?php ActiveForm::end(); ?>
 
 </div>

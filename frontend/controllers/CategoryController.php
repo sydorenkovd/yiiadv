@@ -11,7 +11,7 @@ use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use frontend\models\Job;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -53,6 +53,25 @@ class CategoryController extends Controller
             ->limit($pagination->limit)->all();
         return $this->render('index', [
             'categories' => $categories,
+            'pagination' => $pagination,
+        ]);
+    }
+    /*
+     * Method FindByCategory
+     * accepted category id
+     * return list of jobs group by category
+     */
+    public function actionOrders($category)
+    {
+        $query = Job::find()->where(['category_id' => $category]);
+        $pagination = new Pagination([
+            'defaultPageSize' => 5,
+            'totalCount' => $query->count(),
+        ]);
+        $orders = $query->orderBy('create_date DESC')
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)->all();
+        return $this->render('orders', ['orders' => $orders,
             'pagination' => $pagination,
         ]);
     }

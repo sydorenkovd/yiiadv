@@ -6,6 +6,9 @@ use frontend\models\Category;
 /* @var $this yii\web\View */
 /* @var $job frontend\models\Job */
 /* @var $form ActiveForm */
+$this->title = 'Create';
+$this->params['breadcrumbs'][] = ['label' => 'Job', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Create';
 ?>
 <div class="job-create">
 <h1 class="page-header">Create Job</h1>
