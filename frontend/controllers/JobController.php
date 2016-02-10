@@ -38,6 +38,12 @@ class JobController extends Controller
     {
         return $this->render('add');
     }
+    public function actionDetails($id)
+    {//get Job
+        $job = Job::find()
+            ->where(['id' => $id])->one();
+        return $this->render('details', ['job' => $job]);
+    }
 
     public function actionCreate()
     {
