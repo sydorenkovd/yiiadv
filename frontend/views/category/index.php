@@ -15,7 +15,7 @@ use yii\widgets\LinkPager;
 <ul class="list-group">
     <?php foreach($categories as $category) : ?>
     <li class="list-group-item">
-        <a href="<?php echo Yii::$app->urlManager->createUrl(['job', 'category' => $category->id ]); ?>">
+        <a href="<?php echo Yii::$app->urlManager->createUrl(['job/order', 'category' => $category->id ]); ?>">
             <?php echo $category->name; ?></a></li>
     <?php endforeach; ?>
 </ul>

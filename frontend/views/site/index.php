@@ -11,7 +11,10 @@ $this->title = 'My Yii Application';
 
         <p class="lead">Browse our open job listings or find employees</p>
 
-        <p><a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-lg btn-success" href="/jobs/index">Start Browsing</a><a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-lg btn-primary" href="/jobs/create">Create Listnings</a></p>
+        <p><a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-lg btn-success" href="<?= Yii::$app
+                ->urlManager->createUrl('job'); ?>">Start Browsing</a>
+            <a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-lg btn-primary" href="<?= Yii::$app
+                ->urlManager->createUrl('job/create'); ?>">Create Listnings</a></p>
     </div>
 
     <div class="body-content">
@@ -24,16 +27,18 @@ $this->title = 'My Yii Application';
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Browse &raquo;</a></p>
+                <p><a class="btn btn-default" href="<?= Yii::$app
+                        ->urlManager->createUrl('job'); ?>">Browse &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Find Employees</h2>
+                <h2>Find By Category</h2>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Find &raquo;</a></p>
+                <p><a class="btn btn-default" href="<?= Yii::$app
+                        ->urlManager->createUrl('category'); ?>">Find &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h2>Free To Join</h2>
@@ -42,7 +47,8 @@ $this->title = 'My Yii Application';
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Join &raquo;</a></p>
+                <p><a class="btn btn-default" href="<?= Yii::$app
+                        ->urlManager->createUrl('site/signup'); ?>">Join &raquo;</a></p>
             </div>
         </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\controllers;
+
 use yii\data\Pagination;
 use yii\helpers\Url;
 use common\models\Interview;
@@ -41,6 +42,7 @@ class JobController extends Controller
             ],
         ];
     }
+
     public function actionIndex()
     {
         $query = Job::find();
@@ -51,16 +53,33 @@ class JobController extends Controller
         $jobs = $query->orderBy('create_date DESC')
             ->offset($pagination->offset)
             ->limit($pagination->limit)->all();
-        return $this->render('index', ['jobs'=> $jobs,
-        'pagination' => $pagination]);
+        return $this->render('index', ['jobs' => $jobs,
+            'pagination' => $pagination,
+        ]);
     }
+
+    public function actionOrder($category)
+    {
+        $query = Job::find()->where(['category_id' => $category]);
+        $pagination = new Pagination([
+            'defaultPageSize' => 5,
+            'totalCount' => $query->count(),
+        ]);
+        $orders = $query->orderBy('create_date DESC')
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)->all();
+        return $this->render('orders', ['orders' => $orders,
+        'pagination' => $pagination,
+        ]);
+    }
+
     public function actionEdit($id)
     {
         $job = Job::findOne(['id' => $id]);
-        if (Yii::$app->user->identity->getId() != $job->user_id){
+        if (Yii::$app->user->identity->id != $job->user_id) {
             Yii::$app->session->setFlash('restricted', 'Deny!');
             return $this->redirect(Yii::$app->urlManager->createUrl('job'));
-    }
+        }
         if ($job->load(Yii::$app->request->post()) && $job->validate()) {
             $job->save();
             Yii::$app->session->setFlash('success', 'Job has edited successfully!');
@@ -70,6 +89,7 @@ class JobController extends Controller
             'job' => $job
         ]);
     }
+
     public function actionDetails($id)
     {//get Job
         $job = Job::find()
@@ -82,10 +102,10 @@ class JobController extends Controller
         $job = new Job();
 
         if ($job->load(Yii::$app->request->post()) && $job->validate()) {
-                $job->save();
+            $job->save();
             Yii::$app->session->setFlash('success', 'Job has created successfully!');
-                return $this->redirect(Yii::$app->urlManager->createUrl('job'));
-            }
+            return $this->redirect(Yii::$app->urlManager->createUrl('job'));
+        }
         return $this->render('create', [
             'job' => $job,
         ]);
@@ -94,7 +114,7 @@ class JobController extends Controller
     public function actionDelete($id)
     {
         $job = Job::findOne($id);
-        if (Yii::$app->user->identity->getId() != $job->user_id){
+        if (Yii::$app->user->identity->id != $job->user_id) {
             Yii::$app->session->setFlash('restricted', 'Deny!');
             return $this->redirect(Yii::$app->urlManager->createUrl('job'));
         }

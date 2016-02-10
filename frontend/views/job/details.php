@@ -8,7 +8,7 @@ use frontend\models\Job;
 
 <a href="<?= Yii::$app->urlManager
     ->createUrl('job') ?>">Back to Jobs</a>
-<?php if(Yii::$app->user->identity->getId() == $job->user_id) : ?>
+<?php if(Yii::$app->user->identity->id == $job->user_id) : ?>
     <span class="pull-right">
     <a class="btn btn-danger" href="<?= Yii::$app
         ->urlManager->createUrl(['job/delete', 'id' => $job->id])?>">Delete</a>
