@@ -25,7 +25,7 @@ class JobController extends Controller
     {
         $query = Job::find();
         $pagination = new Pagination([
-            'defaultPageSize' => 3,
+            'defaultPageSize' => 5,
             'totalCount' => $query->count(),
         ]);
         $jobs = $query->orderBy('create_date DESC')
@@ -34,9 +34,18 @@ class JobController extends Controller
         return $this->render('index', ['jobs'=> $jobs,
         'pagination' => $pagination]);
     }
-    public function actionAdd()
+    public function actionEdit($id)
     {
-        return $this->render('add');
+        $job = Job::findOne(['id' => $id]);
+
+        if ($job->load(Yii::$app->request->post()) && $job->validate()) {
+            $job->save();
+            Yii::$app->session->setFlash('success', 'Job has edited successfully!');
+            return $this->redirect(Yii::$app->urlManager->createUrl('job'));
+        }
+        return $this->render('edit', [
+            'job' => $job
+        ]);
     }
     public function actionDetails($id)
     {//get Job
@@ -51,7 +60,7 @@ class JobController extends Controller
 
         if ($job->load(Yii::$app->request->post()) && $job->validate()) {
                 $job->save();
-            Yii::$app->session->setFlash('success', 'Job have created successfully!');
+            Yii::$app->session->setFlash('success', 'Job has created successfully!');
                 return $this->redirect(Yii::$app->urlManager->createUrl('job'));
             }
         return $this->render('create', [
@@ -59,8 +68,11 @@ class JobController extends Controller
         ]);
     }
 
-    public function actionDelete()
+    public function actionDelete($id)
     {
-        return $this->render('delete');
+        $job = Job::findOne($id);
+        $job->delete();
+        Yii::$app->session->setFlash('success', 'Job has deleted!');
+        return $this->redirect(Yii::$app->urlManager->createUrl('job'));
     }
 }

@@ -1,9 +1,21 @@
 <?php
 use frontend\models\Category;
 use frontend\models\Job;
+/*
+ * accepted $job object from JobController
+ */
 ?>
+
 <a href="<?= Yii::$app->urlManager
     ->createUrl('job') ?>">Back to Jobs</a>
+    <span class="pull-right">
+    <a class="btn btn-danger" href="<?= Yii::$app
+        ->urlManager->createUrl(['job/delete', 'id' => $job->id])?>">Delete</a>
+</span>
+<span style="margin-left: 10px">
+    <a class="btn btn-default" style="background-color: #d0eded" href="<?= Yii::$app->urlManager
+        ->createUrl(['job/edit', 'id' => $job->id])?>">Edit</a>
+</span>
 <? if(!empty($job)) : ?>
 
 <h3>From category: <? $category = Category::find()

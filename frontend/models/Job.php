@@ -39,8 +39,9 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'title', 'description', 'type', 'reqierement', 'salary', 'city', 'state', 'zipcode', 'contact_email', 'contact_phone', 'is_published'], 'required'],
-            [['category_id', 'is_published'], 'integer'],
+            [['category_id', 'title', 'description', 'type', 'reqierement', 'salary', 'city', 'state', 'zipcode', 'contact_email', 'contact_phone'], 'required'],
+            [['category_id'], 'integer'],
+            ['contact_email', 'email'],
             [['description'], 'string'],
             [['title', 'type', 'reqierement', 'salary', 'contact_phone'], 'string', 'max' => 255],
             [['city', 'state', 'zipcode', 'contact_email'], 'string', 'max' => 50]
@@ -86,16 +87,18 @@ class Job extends \yii\db\ActiveRecord
          * Отображает "сегодня" и количество пройденного времени с момента размещения вакансии в течении дня
          */
         if (date('d', $phpdate) == date('d', time())) {
-            $yes = "<i>today </i>";
+            $yes = "<i style='color: #00aa00'>today </i>";
             if($pr < 7200) {
                 $timeAgo = round(($pr - 3600)/60) . ' minutes ago ';
-                if(round(($pr - 3600)/60) == 0){ $timeAgo = "Right Now ";
-                return $timeAgo . date("F j, Y, g:i a:", $phpdate);}
-                return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
+                if(round(($pr - 3600)/60) == 0)
+                { $timeAgo = "Right Now ";
+                return $timeAgo . date("F j, Y, g:i a:", $phpdate);
+                }
+                return $yes . $timeAgo . " | " . date("F j, Y, g:i a:", $phpdate);
             }
             if($pr > 7200 && $pr < 89000){
                 $timeAgo = round(($pr - 3600)/3600) . ' hours ago ';
-                return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
+                return $yes . $timeAgo . " | " . date("F j, Y, g:i a:", $phpdate);
             }
         }
         /*
@@ -150,4 +153,12 @@ class Job extends \yii\db\ActiveRecord
     public function getCategory(){
         return $this->hasMany(Job::className(), ['category_id' => 'id']);
     }
+    public function beforeSave($insert){
+        $this->user_id = 1;
+        return parent::beforeSave($insert);
+    }
+//    public function beforeValidate(){
+//        if($this->is_published == '1') $this->is_published = 1;
+//        return parent::beforeValidate();
+//    }
 }
