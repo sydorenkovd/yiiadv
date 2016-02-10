@@ -47,17 +47,15 @@ class JobController extends Controller
 
     public function actionCreate()
     {
-        $model = new Job();
+        $job = new Job();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                // form inputs are valid, do something here
-                return;
+        if ($job->load(Yii::$app->request->post()) && $job->validate()) {
+                $job->save();
+            Yii::$app->session->setFlash('success', 'Job have created successfully!');
+                return $this->redirect(Yii::$app->urlManager->createUrl('job'));
             }
-        }
-
         return $this->render('create', [
-            'model' => $model,
+            'job' => $job,
         ]);
     }
 

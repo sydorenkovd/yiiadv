@@ -40,15 +40,11 @@ class CategoryController extends Controller
     {
         $category = new Category();
 
-        if ($category->load(Yii::$app->request->post())) {
-            if ($category->validate()) {
-                if($category->validate()) {
+        if ($category->load(Yii::$app->request->post()) && $category->validate()) {
                     $category->save();
                     Yii::$app->getSession()->setFlash('success', 'You added new category successfully');
                     return $this->redirect(Yii::$app->urlManager
                         ->createUrl('category'));
-                }
-            }
         }
 
         return $this->render('create', [

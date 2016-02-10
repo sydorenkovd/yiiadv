@@ -39,11 +39,10 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'user_id', 'title', 'description', 'type', 'reqierement', 'salary', 'city', 'state', 'zipcode', 'contact_email', 'contact_form', 'is_published'], 'required'],
-            [['category_id', 'user_id', 'is_published'], 'integer'],
+            [['category_id', 'title', 'description', 'type', 'reqierement', 'salary', 'city', 'state', 'zipcode', 'contact_email', 'contact_phone', 'is_published'], 'required'],
+            [['category_id', 'is_published'], 'integer'],
             [['description'], 'string'],
-            [['create_date'], 'safe'],
-            [['title', 'type', 'reqierement', 'salary', 'contact_form'], 'string', 'max' => 255],
+            [['title', 'type', 'reqierement', 'salary', 'contact_phone'], 'string', 'max' => 255],
             [['city', 'state', 'zipcode', 'contact_email'], 'string', 'max' => 50]
         ];
     }
@@ -56,7 +55,6 @@ class Job extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'category_id' => 'Category ID',
-            'user_id' => 'User ID',
             'title' => 'Title',
             'description' => 'Description',
             'type' => 'Type',
@@ -66,7 +64,7 @@ class Job extends \yii\db\ActiveRecord
             'state' => 'State',
             'zipcode' => 'Zipcode',
             'contact_email' => 'Contact Email',
-            'contact_form' => 'Contact Form',
+            'contact_phone' => 'Contact Phone',
             'is_published' => 'Is Published',
             'create_date' => 'Create Date',
         ];
@@ -91,6 +89,8 @@ class Job extends \yii\db\ActiveRecord
             $yes = "<i>today </i>";
             if($pr < 7200) {
                 $timeAgo = round(($pr - 3600)/60) . ' minutes ago ';
+                if(round(($pr - 3600)/60) == 0){ $timeAgo = "Right Now ";
+                return $timeAgo . date("F j, Y, g:i a:", $phpdate);}
                 return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
             }
             if($pr > 7200 && $pr < 89000){

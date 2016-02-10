@@ -2,29 +2,31 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use frontend\models\Category;
 /* @var $this yii\web\View */
-/* @var $model frontend\models\Job */
+/* @var $job frontend\models\Job */
 /* @var $form ActiveForm */
 ?>
 <div class="job-create">
 
     <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'category_id') ?>
-        <?= $form->field($model, 'user_id') ?>
-        <?= $form->field($model, 'title') ?>
-        <?= $form->field($model, 'description') ?>
-        <?= $form->field($model, 'type') ?>
-        <?= $form->field($model, 'reqierement') ?>
-        <?= $form->field($model, 'salary') ?>
-        <?= $form->field($model, 'city') ?>
-        <?= $form->field($model, 'state') ?>
-        <?= $form->field($model, 'zipcode') ?>
-        <?= $form->field($model, 'contact_email') ?>
-        <?= $form->field($model, 'contact_form') ?>
-        <?= $form->field($model, 'is_published') ?>
-        <?= $form->field($model, 'create_date') ?>
+        <?= $form->field($job, 'category_id')->dropDownList(Category::find()
+            ->select(['name', 'id'])
+            ->indexBy('id')->column(), ['prompt' => 'Select Category']) ?>
+        <?= $form->field($job, 'title') ?>
+        <?= $form->field($job, 'description') ?>
+        <?= $form->field($job, 'type') ?>
+        <?= $form->field($job, 'reqierement') ?>
+        <?= $form->field($job, 'salary') ?>
+        <?= $form->field($job, 'city') ?>
+        <?= $form->field($job, 'state') ?>
+        <?= $form->field($job, 'zipcode') ?>
+        <?= $form->field($job, 'contact_email') ?>
+        <?= $form->field($job, 'contact_phone') ?>
+        <?= $form->field($job, 'is_published')
+            ->label('Опубликовать?')->hint('Allowed 1 for published and 0 for not') ?>
+        <?= $form->field($job, 'create_date') ?>
     
         <div class="form-group">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
