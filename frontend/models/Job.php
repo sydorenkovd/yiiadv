@@ -88,7 +88,7 @@ class Job extends \yii\db\ActiveRecord
          * Отображает "сегодня" и количество пройденного времени с момента размещения вакансии в течении дня
          */
         if (date('d', $phpdate) == date('d', time())) {
-            $yes = "today ";
+            $yes = "<i>today </i>";
             if($pr < 7200) {
                 $timeAgo = round(($pr - 3600)/60) . ' minutes ago ';
                 return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
@@ -107,7 +107,7 @@ class Job extends \yii\db\ActiveRecord
             $s = 2;
         }
         if (date('d', $phpdate) == date('d', time()) - $s) {
-            $yes = "yesterday ";
+            $yes = "<i>yesterday </i> ";
             return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
         }
 /*
@@ -146,5 +146,8 @@ class Job extends \yii\db\ActiveRecord
  */
         return $formatedDate = $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
 
+    }
+    public function getCategory(){
+        return $this->hasMany(Job::className(), ['category_id' => 'id']);
     }
 }

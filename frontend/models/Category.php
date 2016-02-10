@@ -45,4 +45,7 @@ class Category extends ActiveRecord
             'create_date' => 'Create Date',
         ];
     }
+    public function getJob(){
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+    }
 }
