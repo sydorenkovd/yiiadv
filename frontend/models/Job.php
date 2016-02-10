@@ -110,8 +110,8 @@ class Job extends \yii\db\ActiveRecord
             $s = 2;
         }
         if (date('d', $phpdate) == date('d', time()) - $s) {
-            $yes = "<i>yesterday </i> ";
-            return $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
+            $yes = "<i style='color: #0097cf'>yesterday </i> ";
+            return $yes . $timeAgo . " | " . date("F j, Y, g:i a:", $phpdate);
         }
 /*
  * Отображает "вчера", если просматриваем вакансии за вчера, первого числа месяца
@@ -147,7 +147,7 @@ class Job extends \yii\db\ActiveRecord
         /*
  * Отображение форматированой даты
  */
-        return $formatedDate = $yes . $timeAgo . date("F j, Y, g:i a:", $phpdate);
+        return $formatedDate = $yes . $timeAgo . " | " . date("F j, Y, g:i a:", $phpdate);
 
     }
     public function getCategory(){
