@@ -207,7 +207,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
     /**
      * Requests password reset.
      *
