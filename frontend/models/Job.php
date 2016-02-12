@@ -1,7 +1,7 @@
 <?php
 
 namespace frontend\models;
-
+use yii\db\ActiveRecord;
 use Yii;
 
 /**
@@ -23,7 +23,7 @@ use Yii;
  * @property integer $is_published
  * @property string $create_date
  */
-class Job extends \yii\db\ActiveRecord
+class Job extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -106,9 +106,6 @@ class Job extends \yii\db\ActiveRecord
          * $s - модификатор смены часовых поясов
          */
         $s = 1;
-        if(date('H', time()) == '00'){
-            $s = 2;
-        }
         if (date('d', $phpdate) == date('d', time()) - $s) {
             $yes = "<i style='color: #0097cf'>yesterday </i> ";
             return $yes . $timeAgo . " | " . date("F j, Y, g:i a:", $phpdate);
