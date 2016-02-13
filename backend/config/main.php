@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [
+    'module' => [
         'settings' => [
             'class' => 'backend\modules\settings\Settings',
         ],
