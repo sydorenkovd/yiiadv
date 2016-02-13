@@ -23,9 +23,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'create_date') ?>
 
-    <?= $form->field($model, 'image') ?>
+<!--    --><?//= $form->field($model, 'image') ?>
 
-    <?php // echo $form->field($model, 'author') ?>
+    <?php  echo $form->field($model, 'author') ?>
 
     <?php // echo $form->field($model, 'tags') ?>
 
