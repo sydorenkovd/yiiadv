@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
+use common\models\Author;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Posts */
 /* @var $form yii\widgets\ActiveForm */
@@ -19,6 +20,9 @@ use yii\widgets\ActiveForm;
 <!--    --><?//= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'author_id')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'author')->dropDownList(
+   ArrayHelper::map(Author::find()->all(), 'id','name'), ['prompt' => 'List of authors']
+    )->hint('Choose the author') ?>
 
 <!--    --><?//= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
