@@ -39,7 +39,7 @@ AppAsset::register($this);
 //        ['label' => 'Categories', 'url' => ['/category/index']],
 //        ['label' => 'Jobs', 'url' => ['/job/index']],
 //        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ['label' => 'Posts', 'url' => ['/post/index']],
+    ['label' => 'Posts', 'url' => ['/posts/index']],
     ];
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],

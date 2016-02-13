@@ -28,15 +28,23 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Gazeta',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+    if(!Yii::$app->user->isGuest) {
+        $menuItems = [
+//        ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Posts', 'url' => ['/posts/index']],
+        ];
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-left'],
+            'items' => $menuItems,
+        ]);
+    }
+    $menuItems = [];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
