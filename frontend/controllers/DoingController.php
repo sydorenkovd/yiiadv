@@ -2,12 +2,29 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
 use frontend\models\UserForm;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
 
 class DoingController extends Controller
 {
+    public function behaviors(){
+        return [
+//          'access' => [
+//              'class' => AccessControl::className(),
+//              'only' => ['userform', 'database'],
+//              'rules'=> [
+//                  [
+//                      'actions' => ['userform', 'database'],
+//                      'allow' => true,
+//                      'roles' => ['@'],
+//                  ],
+//              ],
+//          ],
+        ];
+    }
     public function actionIndex()
     {
 
@@ -22,6 +39,10 @@ class DoingController extends Controller
         } else {
             return $this->render('userform', ['userform' => $userform]);
         }
+    }
+    public function actionDatabase(){
+        $users = User::find()->all();
+        return $this->render('database', ['users' => $users]);
     }
 
 }
