@@ -12,9 +12,9 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'module' => [
-        'settings' => [
-            'class' => 'backend\modules\settings\Settings',
-        ],
+//        'settings' => [
+//            'class' => 'backend\modules\settings\Settings',
+//        ],
     ],
     'components' => [
         'user' => [
