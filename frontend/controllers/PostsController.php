@@ -35,7 +35,7 @@ class PostsController extends Controller
 //        $dataProvider = new ActiveDataProvider([
 //            'query' => Posts::find(),
 //        ]);
-        $query = Posts::find();
+        $query = Posts::find()->where(['is_moderate' => 1]);
         $pagination = new Pagination([
             'defaultPageSize' => 5,
             'totalCount' => $query->count(),

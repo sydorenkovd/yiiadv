@@ -2,6 +2,7 @@
 use frontend\models\Category;
 use frontend\models\Job;
 use yii\widgets\Breadcrumbs;
+use yii\helpers\Html;
 /*
  * accepted $job object from JobController
  */
@@ -15,8 +16,11 @@ $this->params['breadcrumbs'][] = 'Details';
     ->createUrl('job') ?>">Back to Jobs</a>
 <?php if(Yii::$app->user->identity->id == $job->user_id) : ?>
     <span class="pull-right">
-    <a class="btn btn-danger" href="<?= Yii::$app
-        ->urlManager->createUrl(['job/delete', 'id' => $job->id])?>">Delete</a>
+        <?= Html::a('Delete', ['job/delete', 'id' => $job->id],
+            ['class' => 'btn btn-danger', 'data'
+            => ['confirm' => 'Would you like to change something?']]) ?>
+<!--    <a class="btn btn-danger" href="--><?//= Yii::$app
+//        ->urlManager->createUrl(['job/delete', 'id' => $job->id])?><!--">Delete</a>-->
 </span>
 <span style="margin-left: 10px">
     <a class="btn btn-default" style="background-color: #d0eded" href="<?= Yii::$app->urlManager

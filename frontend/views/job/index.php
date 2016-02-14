@@ -8,7 +8,7 @@ $this->title = 'Job';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
     <h1 class="page-header">Jobs:
-        <a class="btn btn-primary pull-right" href="<?php echo Yii::$app
+        <a class="btn btn-primary" href="<?php echo Yii::$app
             ->urlManager->createUrl('job/create'); ?>">Create</a></h1>
 <? if (!empty($jobs)) :
     ?>
