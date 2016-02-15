@@ -22,6 +22,10 @@ use yii\filters\AccessControl;
 
 class JobController extends Controller
 {
+    /*
+     * choose default action
+     */
+//   public $defaultAction = 'create';
     public function behaviors()
     {
         return [

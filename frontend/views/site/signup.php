@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'username') ?>
 
-                <?= $form->field($model, 'email') ?>
+                <?= $form->field($model, 'email')->hint('Must contain @ and dns mail-hosting company') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
@@ -30,6 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
             <?php ActiveForm::end(); ?>
+            <?
+            /*
+             * this thing for generating <a href=""></a> tags
+             */
+//         echo Html::a('Test', ['index'], ['class' => 'btn btn-primary'])
+            ?>
         </div>
     </div>
 </div>
