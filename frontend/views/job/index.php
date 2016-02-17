@@ -3,6 +3,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
 use frontend\models\Job;
 
 $this->title = 'Job';
@@ -39,6 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
             </li>
         <?php endforeach; ?>
     </ul>
+    <?php $form = ActiveForm::begin(['id' => 'form-accept']);
+   echo $form->field($jobs, 'username')->textarea();
+
+    ?>
 <? else : ?>
     <h2>There are no jobs in this category</h2>
 <? endif; ?>

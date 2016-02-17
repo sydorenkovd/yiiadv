@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use yii\data\Pagination;
+use yii\filters\ContentNegotiator;
 use yii\helpers\Url;
 use common\models\Interview;
 use frontend\models\ContactFormexample;
@@ -19,6 +20,7 @@ use frontend\models\Job;
 use frontend\models\Category;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\Response;
 
 class JobController extends Controller
 {
@@ -29,10 +31,27 @@ class JobController extends Controller
     public function behaviors()
     {
         return [
+            /*
+             * it's config accept only json, xml, and content using english and german
+             */
+//            [
+//            'bootstrap' => [
+//              'class' => ContentNegotiator::className(),
+//                'formats' => [
+//                    'application/json' => Response::FORMAT_JSON,
+//                    'application/xml' => Response::FORMAT_XML,
+//                ],
+//                'languages' => [
+//                    'en-US',
+//                    'de',
+//                ],
+//            ],
+//                ],
 //            'accessOnce' => [
 //                'class' => \frontend\behaviors\AccessOnce::className(),
 //                'actions' => ['interview']
 //            ],
+
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['create', 'edit', 'delete'],
