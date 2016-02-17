@@ -9,7 +9,7 @@ use frontend\models\Category;
 $this->title = 'Edit';
 $this->params['breadcrumbs'][] = ['label' => 'Job', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Details', 'url' => ['job/details', 'id' => $job->id ]];
-$this->params['breadcrumbs'][] = 'Edit';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="job-edit">
 <h1 class="page-header">Edit Job</h1>
