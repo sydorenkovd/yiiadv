@@ -8,3 +8,4 @@
         <?= $post->description; ?>
     </li>
 </ul>
+<?= $this->blocks['block1'] ?>

@@ -14,7 +14,6 @@ use yii\data\Pagination;
  */
 class PostsController extends Controller
 {
-    public $layout = 'post';
     public function behaviors()
     {
         return [
@@ -24,6 +23,10 @@ class PostsController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+//            'page' => [
+//                'class' => 'yii\web\ViewAction',
+//                'viewPrefix' => 'page'
+//            ],
         ];
     }
 
