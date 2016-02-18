@@ -40,10 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </li>
         <?php endforeach; ?>
     </ul>
-    <?php $form = ActiveForm::begin(['id' => 'form-accept']);
-   echo $form->field($jobs, 'username')->textarea();
-
-    ?>
 <? else : ?>
     <h2>There are no jobs in this category</h2>
 <? endif; ?>

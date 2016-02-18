@@ -12,8 +12,8 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        'main' => [
-            'class' => 'backend\modules\settings\Settings'
+        'settings' => [
+            'class' => 'backend\modules\settings\Settings',
         ],
     ],
     'components' => [
