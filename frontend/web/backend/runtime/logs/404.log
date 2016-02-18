@@ -1,0 +1,134 @@
+2016-02-17 14:43:20 [127.0.0.1][-][gs6jhjm9oqo7nvo6li6qo7f5u4][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: category/find' in C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Controller.php:122
+Stack trace:
+#0 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('find', Array)
+#1 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\web\Application.php(84): yii\base\Module->runAction('category/find', Array)
+#2 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 C:\OpenServer\domains\localhost\www\yiiadv\www\frontend\web\index.php(18): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\web\Application.php:96
+Stack trace:
+#0 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\OpenServer\domains\localhost\www\yiiadv\www\frontend\web\index.php(18): yii\base\Application->run()
+#2 {main}
+2016-02-17 14:43:20 [127.0.0.1][-][gs6jhjm9oqo7nvo6li6qo7f5u4][info][application] $_GET = [
+    'r' => 'category/find'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => 'gs6jhjm9oqo7nvo6li6qo7f5u4'
+    '_csrf' => '4fdcc4766676222babf86f50b70f84f669f59fe4f3f074cd801a8a8050a07e6fa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"728M5uZoIt02DYObD5_Adn2c8bwe86Et\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_COOKIE' => 'PHPSESSID=gs6jhjm9oqo7nvo6li6qo7f5u4; _csrf=4fdcc4766676222babf86f50b70f84f669f59fe4f3f074cd801a8a8050a07e6fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22728M5uZoIt02DYObD5_Adn2c8bwe86Et%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => 'c:\\openserver\\modules\\php\\PHP-5.6\\ext;c:\\openserver\\modules\\php\\PHP-5.6\\pear;c:\\openserver\\modules\\php\\PHP-5.6\\pear\\bin;c:\\openserver\\modules\\php\\PHP-5.6;c:\\openserver\\modules\\imagemagick;c:\\openserver\\modules\\wget\\bin;c:\\openserver\\modules\\git;c:\\openserver\\modules\\git\\bin;c:\\openserver\\modules\\git\\mingw\\bin;c:\\openserver\\modules\\git\\cmd;c:\\openserver\\modules\\database\\MySQL-5.6\\bin;c:\\openserver\\modules\\http\\Apache-2.4\\bin;c:\\openserver\\modules\\http\\Apache-2.4;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\system32\\Wbem;C:\\Windows\\SysWOW64'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.16 (Win32)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'C:/OpenServer/domains/localhost/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/OpenServer/domains/localhost/www'
+    'SERVER_ADMIN' => '[no address given]'
+    'SCRIPT_FILENAME' => 'C:/OpenServer/domains/localhost/www/yiiadv/www/frontend/web/index.php'
+    'REMOTE_PORT' => '42135'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=category%2Ffind'
+    'REQUEST_URI' => '/yiiadv/www/frontend/web/index.php?r=category%2Ffind'
+    'SCRIPT_NAME' => '/yiiadv/www/frontend/web/index.php'
+    'PHP_SELF' => '/yiiadv/www/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1455709400.664
+    'REQUEST_TIME' => 1455709400
+    'argv' => [
+        0 => 'r=category%2Ffind'
+    ]
+    'argc' => 1
+]
+2016-02-17 14:44:12 [127.0.0.1][-][gs6jhjm9oqo7nvo6li6qo7f5u4][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request: site/fimd' in C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Controller.php:122
+Stack trace:
+#0 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('fimd', Array)
+#1 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\web\Application.php(84): yii\base\Module->runAction('site/fimd', Array)
+#2 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#3 C:\OpenServer\domains\localhost\www\yiiadv\www\frontend\web\index.php(18): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\web\Application.php:96
+Stack trace:
+#0 C:\OpenServer\domains\localhost\www\yiiadv\www\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 C:\OpenServer\domains\localhost\www\yiiadv\www\frontend\web\index.php(18): yii\base\Application->run()
+#2 {main}
+2016-02-17 14:44:12 [127.0.0.1][-][gs6jhjm9oqo7nvo6li6qo7f5u4][info][application] $_GET = [
+    'r' => 'site/fimd'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => 'gs6jhjm9oqo7nvo6li6qo7f5u4'
+    '_csrf' => '4fdcc4766676222babf86f50b70f84f669f59fe4f3f074cd801a8a8050a07e6fa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"728M5uZoIt02DYObD5_Adn2c8bwe86Et\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__captcha/site/captcha' => 'aah'
+    '__captcha/site/captchacount' => 1
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_COOKIE' => 'PHPSESSID=gs6jhjm9oqo7nvo6li6qo7f5u4; _csrf=4fdcc4766676222babf86f50b70f84f669f59fe4f3f074cd801a8a8050a07e6fa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22728M5uZoIt02DYObD5_Adn2c8bwe86Et%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => 'c:\\openserver\\modules\\php\\PHP-5.6\\ext;c:\\openserver\\modules\\php\\PHP-5.6\\pear;c:\\openserver\\modules\\php\\PHP-5.6\\pear\\bin;c:\\openserver\\modules\\php\\PHP-5.6;c:\\openserver\\modules\\imagemagick;c:\\openserver\\modules\\wget\\bin;c:\\openserver\\modules\\git;c:\\openserver\\modules\\git\\bin;c:\\openserver\\modules\\git\\mingw\\bin;c:\\openserver\\modules\\git\\cmd;c:\\openserver\\modules\\database\\MySQL-5.6\\bin;c:\\openserver\\modules\\http\\Apache-2.4\\bin;c:\\openserver\\modules\\http\\Apache-2.4;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\system32\\Wbem;C:\\Windows\\SysWOW64'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.16 (Win32)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'C:/OpenServer/domains/localhost/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'C:/OpenServer/domains/localhost/www'
+    'SERVER_ADMIN' => '[no address given]'
+    'SCRIPT_FILENAME' => 'C:/OpenServer/domains/localhost/www/yiiadv/www/frontend/web/index.php'
+    'REMOTE_PORT' => '42157'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=site%2Ffimd'
+    'REQUEST_URI' => '/yiiadv/www/frontend/web/index.php?r=site%2Ffimd'
+    'SCRIPT_NAME' => '/yiiadv/www/frontend/web/index.php'
+    'PHP_SELF' => '/yiiadv/www/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1455709452.859
+    'REQUEST_TIME' => 1455709452
+    'argv' => [
+        0 => 'r=site%2Ffimd'
+    ]
+    'argc' => 1
+]
