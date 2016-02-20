@@ -3,7 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use frontend\models\Posts;
+use common\models\Posts;
+use common\models\Tags;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -101,6 +102,7 @@ class PostsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'tags' => Tags::find()->all(),
             ]);
         }
     }
@@ -134,8 +136,10 @@ class PostsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->id = Yii::$app->user->id;
             return $this->render('create', [
                 'model' => $model,
+                'tags' => Tags::find()->all(),
             ]);
         }
     }
