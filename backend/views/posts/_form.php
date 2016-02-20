@@ -20,13 +20,22 @@ use common\models\Author;
 <!--    --><?//= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'author_id')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'author')->dropDownList(
-   ArrayHelper::map(Author::find()->all(), 'id','name'), ['prompt' => 'List of authors']
-    )->hint('Choose the author') ?>
+<!--    --><?//= $form->field($model, 'author')->dropDownList(
+//   ArrayHelper::map(Author::find()->all(), 'id','name'), ['prompt' => 'List of authors']
+//    )->hint('Choose the author') ?>
 
 <!--    --><?//= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'is_moderate')->textInput() ?>
+<!--    --><?//= $form->field($model, 'create_date')->widget(
+//      \yii\jui\DatePicker::className(), [
+//            'inline' => false,
+//            'clientOptions' => [
+//                'autoclose' => true,
+//                'format' => 'Y-m-d H-i-s',
+//            ]
+//        ]
+//    ); ?>
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

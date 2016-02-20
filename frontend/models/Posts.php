@@ -32,7 +32,7 @@ class Posts extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'author_id'], 'required'],
+            [['title', 'description'], 'required'],
             [['description'], 'string'],
             [['create_date'], 'safe'],
             [['is_moderate'], 'integer'],

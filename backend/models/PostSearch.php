@@ -19,7 +19,7 @@ class PostSearch extends Posts
     {
         return [
             [['id'], 'integer'],
-            [['title', 'description', 'create_date', 'image', 'author', 'tags', 'is_moderate'], 'safe'],
+            [['title', 'description', 'create_date', 'image', 'tags', 'is_moderate'], 'safe'],
         ];
     }
 
@@ -64,7 +64,6 @@ class PostSearch extends Posts
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'tags', $this->tags])
             ->andFilterWhere(['like', 'is_moderate', $this->is_moderate]);
 

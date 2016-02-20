@@ -18,3 +18,4 @@ use common\models\Author;
         <h2 class="alert-danger">There are no posts1</h2>
     <? endif; ?>
 </ul>
+<?php //var_dump(Author::find()->all()); ?>
