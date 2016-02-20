@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\jui\DatePicker;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Moderate Posts', ['moderate'], ['class' => 'btn btn-info']) ?>
         <? endif; ?>
     </p>
-
+<?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -60,5 +61,5 @@ $this->params['breadcrumbs'][] = $this->title;
 //        ]);
 //    }
 //    ?>
-
+<?php Pjax::end(); ?>
 </div>
