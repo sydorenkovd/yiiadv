@@ -14,8 +14,6 @@ use yii\web\NotFoundHttpException;
  * @property string $title
  * @property string $description
  * @property string $create_date
- * @property string $image
- * @property string $author
  * @property string $tags
  * @property integer $is_moderate
  */
@@ -60,7 +58,7 @@ class Posts extends ActiveRecord
             'create_date' => 'Create Date',
             'image' => 'Image',
             'author_id' => 'Author Id',
-            'author' => 'Author',
+//            'author' => 'Author',
             'tags' => 'Tags',
             'is_moderate' => 'Is Moderate',
         ];

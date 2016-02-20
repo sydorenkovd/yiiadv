@@ -58,17 +58,17 @@ class PostsController extends Controller
 //            'searchModel' => $searchModel,
 //            'dataProvider' => $dataProvider,
 //        ]);
-//        $searchModel = new PostSearch();
-//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $model = Posts::find()->all();
-        $dataProvider = new ActiveDataProvider([
-            'query' => Posts::find(),
-        ]);
+        $searchModel = new PostSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        $model = Posts::find()->all();
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => Posts::find(),
+//        ]);
 
         return $this->render('index', [
-//            'searchModel' => $searchModel,
-            'posts' => $dataProvider,
-            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+//            'model' => $model,
         ]);
     }
     public function actionEdit($id){

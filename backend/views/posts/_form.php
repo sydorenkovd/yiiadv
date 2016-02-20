@@ -26,15 +26,15 @@ use common\models\Author;
 
 <!--    --><?//= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
-<!--    --><?//= $form->field($model, 'create_date')->widget(
-//      \yii\jui\DatePicker::className(), [
-//            'inline' => false,
+    <?= $form->field($model, 'create_date')->widget(
+      \yii\jui\DatePicker::className(), [
+            'inline' => false,
 //            'clientOptions' => [
 //                'autoclose' => true,
-//                'format' => 'Y-m-d H-i-s',
+                'dateFormat' => 'yyyy-MM-dd',
 //            ]
-//        ]
-//    ); ?>
+        ]
+    ); ?>
 
 
     <div class="form-group">
