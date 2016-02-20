@@ -1,42 +1,38 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: sydorenkovd
+ */
+use common\models\Comment;
+use common\models\TagPost;
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Posts */
+/* @var $model common\models\Post */
+/* @var \frontend\models\CommentForm $commentForm \;
+/* @var TagPost $post */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Посты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="posts-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= $model->title ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary', 'data' => ['confirm' => 'Would you like to change something?']]) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+<div class="meta">
+    <p>Автор: <?= $model->author->username ?>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'description:ntext',
-            'create_date',
-            'image',
-            'author',
-            'tags',
-            'is_moderate',
-        ],
-    ]) ?>
+    <div>
+        <?= $model->content ?>
+    </div>
 
-</div>
+    <div class="tags">
+        <?php
+        $tags = [];
+        foreach($model->getTagPost()->all() as $postTag) {
+            $tag = $postTag->getTag()->one();
+            $tags[] = Html::a($tag->title, ['tag/view', 'id' => $tag->id]);
+        } ?>
+
+        Тэги: <?= implode($tags, ', ') ?>
+    </div>
+    /
