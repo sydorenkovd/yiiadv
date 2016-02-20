@@ -20,6 +20,7 @@ use yii\web\NotFoundHttpException;
 
 class Posts extends ActiveRecord
 {
+    public $file;
     /**
      * @inheritdoc
      */
@@ -40,7 +41,8 @@ class Posts extends ActiveRecord
             [['create_date'], 'safe'],
             [['is_moderate'], 'integer'],
             [['tags'], 'safe'],
-            [['title'], 'string', 'max' => 255],
+            [['logo'], 'file'],
+            [['title', 'logo'], 'string', 'max' => 255],
             [['image'], 'string', 'max' => 30],
             [['tags'], 'string', 'max' => 20]
         ];
@@ -58,7 +60,7 @@ class Posts extends ActiveRecord
             'create_date' => 'Create Date',
             'image' => 'Image',
             'author_id' => 'Author Id',
-//            'author' => 'Author',
+        'logo' => 'logo',
             'tags' => 'Tags',
             'is_moderate' => 'Is Moderate',
         ];
@@ -104,19 +106,19 @@ class Posts extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterSave($insert, $changedAttributes)
-    {
-        TagPost::deleteAll(['post_id' => $this->id]);
-
-        if (is_array($this->tags) && !empty($this->tags)) {
-            $values = [];
-            foreach ($this->tags as $id) {
-                $values[] = [$this->id, $id];
-            }
-            self::getDb()->createCommand()
-                ->batchInsert(TagPost::tableName(), ['post_id', 'tag_id'], $values)->execute();
-        }
-
-        parent::afterSave($insert, $changedAttributes);
-    }
+//    public function afterSave($insert, $changedAttributes)
+//    {
+//        TagPost::deleteAll(['post_id' => $this->id]);
+//
+//        if (is_array($this->tags) && !empty($this->tags)) {
+//            $values = [];
+//            foreach ($this->tags as $id) {
+//                $values[] = [$this->id, $id];
+//            }
+//            self::getDb()->createCommand()
+//                ->batchInsert(TagPost::tableName(), ['post_id', 'tag_id'], $values)->execute();
+//        }
+//
+//        parent::afterSave($insert, $changedAttributes);
+//    }
 }

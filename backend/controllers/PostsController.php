@@ -12,6 +12,8 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\Author;
 use backend\models\PostSearch;
+use yii\web\UploadedFile;
+
 /**
  * PostsController implements the CRUD actions for Posts model.
  */
@@ -133,9 +135,21 @@ class PostsController extends Controller
      */
     public function actionCreate()
     {
+
         $model = new Posts();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+
+        if ($model->load(Yii::$app->request->post())) {
+        /*
+        * get the instance of the uploaded file
+        */
+            $imagename = $model->title;
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->file->saveAs('uploads/'. $imagename.'.'.$model->file->extension);
+            //save the path in the db
+            $model->logo = 'uploads/'. $imagename.'.'.$model->file->extension;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->id = Yii::$app->user->id;

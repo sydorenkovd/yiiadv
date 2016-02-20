@@ -2,8 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-use common\models\Author;
+//use yii\helpers\ArrayHelper;
+//use common\models\Author;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Posts */
 /* @var $form yii\widgets\ActiveForm */
@@ -11,11 +11,12 @@ use common\models\Author;
 
 <div class="posts-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'file')->fileInput() ?>
 
 <!--    --><?//= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
