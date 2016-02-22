@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-//use yii\helpers\ArrayHelper;
+use yii\helpers\ArrayHelper;
 //use common\models\Author;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Posts */
@@ -19,11 +19,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'file')->fileInput() ?>
 
 <!--    --><?//= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'author_id')->textInput(['maxlength' => true]) ?>
-<!--    --><?//= $form->field($model, 'author')->dropDownList(
-//   ArrayHelper::map(Author::find()->all(), 'id','name'), ['prompt' => 'List of authors']
-//    )->hint('Choose the author') ?>
+<?= $form->field($model, 'tags')->checkboxList(
+    ArrayHelper::map($tags, 'id', 'title')
+); ?>
+    <?= $form->field($model, 'author_id')->dropDownList(
+   ArrayHelper::map($authors, 'id','name'), ['prompt' => 'List of authors']
+    )->hint('Choose the author') ?>
 
 <!--    --><?//= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 

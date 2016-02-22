@@ -156,6 +156,8 @@ class PostsController extends Controller
             return $this->render('create', [
                 'model' => $model,
                 'tags' => Tags::find()->all(),
+                'authors' => Author::find()->all(),
+//                'category' => Category::find()->all(),
             ]);
         }
     }
