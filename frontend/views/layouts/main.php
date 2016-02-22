@@ -36,10 +36,10 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+//        ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Categories', 'url' => ['/category/index']],
-        ['label' => 'Jobs', 'url' => ['/job/index']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+//        ['label' => 'Jobs', 'url' => ['/job/index']],
+//        ['label' => 'Contact', 'url' => ['/site/contact']],
     ['label' => 'Posts', 'url' => ['/posts/index']],
     ];
     echo Nav::widget([

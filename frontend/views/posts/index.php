@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     Title: <a href="<?= Yii::$app->urlManager->createUrl(['posts/details', 'id' => $post->id]); ?>"><?= $post->title; ?></a>
 </li>
             <li class="list-group-item">
-               Author: <?= $author->name; ?>
+               Author: <?= $author; ?>
             </li>
             <? endforeach; ?>
     <? else : ?>

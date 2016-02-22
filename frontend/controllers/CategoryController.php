@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Posts;
 use yii\data\Pagination;
 use yii\helpers\Url;
 use common\models\Interview;
@@ -64,6 +65,7 @@ class CategoryController extends Controller
     public function actionOrders($category)
     {
         $query = Job::find()->where(['category_id' => $category]);
+        $query2 = Posts::find()->where(['category_id' => $category]);
         $pagination = new Pagination([
             'defaultPageSize' => 5,
             'totalCount' => $query->count(),
@@ -71,8 +73,12 @@ class CategoryController extends Controller
         $orders = $query->orderBy('create_date DESC')
             ->offset($pagination->offset)
             ->limit($pagination->limit)->all();
+        $postOrders = $query2->orderBy('create_date DESC')
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)->all();
         return $this->render('orders', ['orders' => $orders,
             'pagination' => $pagination,
+            'postOrders' => $postOrders,
         ]);
     }
     public function actionCreate()
