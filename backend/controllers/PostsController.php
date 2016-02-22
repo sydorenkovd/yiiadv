@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 use common\models\Author;
 use backend\models\PostSearch;
 use yii\web\UploadedFile;
-
+use yii\web\ForbiddenHttpException;
 /**
  * PostsController implements the CRUD actions for Posts model.
  */
@@ -87,8 +87,12 @@ class PostsController extends Controller
 
     public function actionModerate()
     {
-        $moderate = Posts::find()->where(['is_moderate' => 0])->all();
-        return $this->render('moderate', ['moderate' => $moderate]);
+        if(Yii::$app->user->can('moderate-post')) {
+            $moderate = Posts::find()->where(['is_moderate' => 0])->all();
+            return $this->render('moderate', ['moderate' => $moderate]);
+        } else {
+            throw new ForbiddenHttpException;
+        }
     }
 
     /**
@@ -135,30 +139,31 @@ class PostsController extends Controller
      */
     public function actionCreate()
     {
+        if (Yii::$app->user->can('create-post')) {
+            $model = new Posts();
 
-        $model = new Posts();
-
-
-
-        if ($model->load(Yii::$app->request->post())) {
-        /*
-        * get the instance of the uploaded file
-        */
+            if ($model->load(Yii::$app->request->post())) {
+                /*
+                * get the instance of the uploaded file
+                */
 //            $imagename = $model->title;
 //            $model->file = UploadedFile::getInstance($model, 'file');
 //            $model->file->saveAs('uploads/'. $imagename.'.'.$model->file->extension);
-            //save the path in the db
+                //save the path in the db
 //            $model->logo = 'uploads/'. $imagename.'.'.$model->file->extension;
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            $model->id = Yii::$app->user->id;
-            return $this->render('create', [
-                'model' => $model,
-                'tags' => Tags::find()->all(),
-                'authors' => Author::find()->all(),
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                $model->id = Yii::$app->user->id;
+                return $this->render('create', [
+                    'model' => $model,
+                    'tags' => Tags::find()->all(),
+                    'authors' => Author::find()->all(),
 //                'category' => Category::find()->all(),
-            ]);
+                ]);
+            }
+        } else {
+            throw new ForbiddenHttpException;
         }
     }
 
