@@ -8,6 +8,7 @@ use common\models\EmailsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * EmailsController implements the CRUD actions for Emails model.
@@ -62,7 +63,19 @@ class EmailsController extends Controller
     {
         $model = new Emails();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            //upload the attachment
+            $model->attachment = UploadedFile::getInstance($model, 'attachment');
+
+            if($model->attachment){
+                $time = time();
+                $model->attachment->saveAs('attachments/'.$time.'.'.$model->attachment->extension);
+                $model->attachment = 'attachments/'.$time.'.'.$model->attachment->extension;
+            }
+            if($model->attachment){
+
+            }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

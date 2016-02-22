@@ -8,5 +8,6 @@
     the file <code><?= __FILE__; ?></code>.
 </p>
 <?php
-var_dump($exm);
+use yii\helpers\Html;
+echo Html::a('Link',Yii::$app->urlManager->createUrl(['site/index', 'id' => 3]), ['class' => 'btn btn-info']);
 ?>

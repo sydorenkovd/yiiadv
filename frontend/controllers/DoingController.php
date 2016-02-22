@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\User;
 use frontend\models\UserForm;
+use yii\bootstrap\Alert;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
@@ -25,7 +26,10 @@ class DoingController extends Controller
 //          ],
         ];
     }
-    public function actionIndex()
+    public function actionIndex(){
+       return $this->render('index');
+    }
+    public function actionExample()
     {
         /**
          * recommended request to globals array's parameters
@@ -59,5 +63,14 @@ class DoingController extends Controller
         $users = User::find()->all();
         return $this->render('database', ['users' => $users]);
     }
+    public function actionExampletwo(){
+//        $session = Yii::$app->session;
+//        $session->setFlash('hello', 'Message says hello');
+//        $s = Alert::widget([
+//           'options' => ['class' => 'alert-info'],
+//            'body' => Yii::$app->session->getFlash('hello'),
+//        ]);
 
+        return $this->render('index');
+    }
 }
