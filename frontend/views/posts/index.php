@@ -18,6 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <?
     if($posts) : ?>
     <? foreach($posts as $post) : ?>
+            <div class="tags">
+                Тэги: <?php foreach($model->getTagPost()->all() as $post) : ?>
+                    <?= $post->getTags()->one()->title ?>
+                <?php endforeach; ?>
+            </div>
             <? $author = Author::getAuthor($post->author_id); ?>
 <li class="list-group-item">
     Title: <a href="<?= Yii::$app->urlManager->createUrl(['posts/details', 'id' => $post->id]); ?>"><?= $post->title; ?></a>
@@ -25,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li class="list-group-item">
                Author: <?= $author; ?>
             </li>
+
             <? endforeach; ?>
     <? else : ?>
         <h2 class="alert-danger">There are no posts</h2>

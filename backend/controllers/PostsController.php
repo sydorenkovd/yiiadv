@@ -144,11 +144,11 @@ class PostsController extends Controller
         /*
         * get the instance of the uploaded file
         */
-            $imagename = $model->title;
-            $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('uploads/'. $imagename.'.'.$model->file->extension);
+//            $imagename = $model->title;
+//            $model->file = UploadedFile::getInstance($model, 'file');
+//            $model->file->saveAs('uploads/'. $imagename.'.'.$model->file->extension);
             //save the path in the db
-            $model->logo = 'uploads/'. $imagename.'.'.$model->file->extension;
+//            $model->logo = 'uploads/'. $imagename.'.'.$model->file->extension;
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

@@ -46,9 +46,11 @@ class PostsController extends Controller
         ]);
         $posts = $query->orderBy('create_date DESC')
             ->offset($pagination->offset)->limit($pagination->limit)->all();
+        $model = new Posts();
         return $this->render('index', [
             'posts' => $posts,
             'pagination' => $pagination,
+            'model' => $model,
         ]);
     }
 

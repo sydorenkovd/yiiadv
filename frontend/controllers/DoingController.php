@@ -27,8 +27,23 @@ class DoingController extends Controller
     }
     public function actionIndex()
     {
+        /**
+         * recommended request to globals array's parameters
+         */
+//        $request = Yii::$app->request;
+//        $id = $request->get('id', 1);
+//        if($request->isAjax){echo 'this is ajax request';}
+//        $info = $request->serverPort;
+//        $info .= $request->absoluteUrl;
+//        $headers = Yii::$app->request->headers;
+        /**
+         * return language which is the most preferred for user
+         */
+//        $exm = $request->getPreferredLanguage();
+        $response = Yii::$app->response;
 
-        return $this->render('index');
+        $exm = $response->statusCode;
+        return $this->render('index', ['exm' => $exm]);
     }
     public function actionUserform(){
         $userform = new Userform();
