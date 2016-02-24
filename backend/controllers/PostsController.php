@@ -62,7 +62,7 @@ class PostsController extends Controller
 //        ]);
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-//        $model = Posts::find()->all();
+        $model = Posts::find()->all();
 //        $dataProvider = new ActiveDataProvider([
 //            'query' => Posts::find(),
 //        ]);
@@ -70,7 +70,7 @@ class PostsController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-//            'model' => $model,
+            'model' => $model,
         ]);
     }
     public function actionEdit($id){
@@ -155,7 +155,7 @@ class PostsController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $model->id = Yii::$app->user->id;
-                return $this->render('create', [
+                return $this->renderAjax('create', [
                     'model' => $model,
                     'tags' => Tags::find()->all(),
                     'authors' => Author::find()->all(),
