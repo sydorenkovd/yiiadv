@@ -12,3 +12,11 @@
 //echo $test->instanse . "<br>";
 //$test->instanse = 'New private';
 //echo $test->instanse;
+//-----------------------------------
+//use yii\base\Event;
+//use frontend\components\Foo;
+//
+//Yii::$app->on('bar', function ($event) {
+//    echo get_class($event->sender);
+//});
+//Yii::$app->trigger('bar', new Event(['sender' => new Foo]));
