@@ -20,3 +20,10 @@
 //    echo get_class($event->sender);
 //});
 //Yii::$app->trigger('bar', new Event(['sender' => new Foo]));
+//-----------------------------------
+//use common\models\Doing;
+//$do = new Doing();
+//$do->email = 'test@test.ru';
+//$do->name = 'test';
+//$do->save();
+//echo $do->created_at;

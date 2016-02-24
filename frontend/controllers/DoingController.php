@@ -70,6 +70,12 @@ class DoingController extends Controller
 //           'options' => ['class' => 'alert-info'],
 //            'body' => Yii::$app->session->getFlash('hello'),
 //        ]);
-        return $this->render('test');
+        $id = Yii::$app->request->get('id', 0);
+        if($id){
+            $this->layout = 'post';
+        } else {
+            $this->layout = 'main';
+        }
+        return $this->render('test', ['id' => $id]);
     }
 }
