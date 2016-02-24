@@ -63,14 +63,13 @@ class DoingController extends Controller
         $users = User::find()->all();
         return $this->render('database', ['users' => $users]);
     }
-    public function actionExampletwo(){
+    public function actionTesttwo(){
 //        $session = Yii::$app->session;
 //        $session->setFlash('hello', 'Message says hello');
 //        $s = Alert::widget([
 //           'options' => ['class' => 'alert-info'],
 //            'body' => Yii::$app->session->getFlash('hello'),
 //        ]);
-
-        return $this->render('index');
+        return $this->render('test');
     }
 }
