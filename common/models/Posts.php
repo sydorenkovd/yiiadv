@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
@@ -162,5 +163,11 @@ class Posts extends ActiveRecord
 //        return $db->getSchema()->getTableNames();
 //        return $post;
         return $db;
+    }
+    public static function queryBuilder(){
+        $query = new Query();
+//        $user = new Query();
+//        $userQuery = $user->select('id')->from('tbl_posts')->where(['title' => 'php'])->one();
+       return $query->select('user_id')->from('tbl_job')->groupBy('user_id')->orderBy(['user_id' => SORT_DESC])->all();
     }
 }

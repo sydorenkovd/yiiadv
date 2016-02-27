@@ -12,7 +12,7 @@
 <hr>
 <pre>
 <?
-print_r($test);
+print_r($query);
 
 ?>
 </pre>
