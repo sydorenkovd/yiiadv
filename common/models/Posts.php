@@ -88,7 +88,6 @@ class Posts extends ActiveRecord
     public function getTagPost(){
         return $this->hasMany(TagPost::className(), ['post_id' => 'id']);
     }
-
     /**
      * return model of post
      * @param $id
@@ -119,5 +118,49 @@ class Posts extends ActiveRecord
         }
 
         parent::afterSave($insert, $changedAttributes);
+    }
+    public static function getTest(){
+        $db = Yii::$app->db;
+        /**
+         * update fields in data
+         */
+//    $command = $db->createCommand('update tbl_posts set title = "MySQL" where title = 3');
+//    $command->execute();
+        /**
+         * insert some rows into database
+         */
+//    $db->createCommand()->batchInsert('tbl_doing', ['name', 'email'],[
+//      ['Chros', 'c@com.m'],
+//      ['Victor', 'st@dc.cd'],
+//    ])->execute();
+        //-----------------------
+//    $db->createCommand()->update('tbl_doing', ['name'=> 'Steve'], ['name' => 'John'])->execute();
+        /**
+         * how exectly to bind parameters to sql statement
+         */
+//$params = [':id' => $_GET['id']];
+//    $post = $db->createCommand('select title from tbl_posts where id=:id')->bindValues($params)->queryOne();
+//        $post = $db->createCommand()->delete('tbl_doing', 'id > 3')->execute();
+//    $command->bindValue(':id', $_GET['id']);
+//    return $command->query();
+        //-----------------------
+        /**
+         * that's example how actually transactions works
+         */
+//        $trans = $db->beginTransaction();
+//        try{
+//            $db->createCommand('insert into tbl_doing ( name, email) VALUES ("vasay", "v@df.df")')->execute();
+//            $db->createCommand()->batchInsert('tbl_doing',['name', 'email'], [['Kesya', 'Vddsd@cd.com']])->execute();
+//            $db->createCommand('update tbl_posts set title = "MySQL" where title = "grisha"')->execute();
+//            $trans->rollBack();
+////            $trans->commit();
+//        } catch(\Exception $e){
+//            $trans->rollBack();
+//            throw $e;
+//        }
+        //------------------
+//        return $db->getSchema()->getTableNames();
+//        return $post;
+        return $db;
     }
 }

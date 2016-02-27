@@ -9,3 +9,10 @@
     </li>
 </ul>
 <?= $this->blocks['block1'] ?>
+<hr>
+<pre>
+<?
+print_r($test);
+
+?>
+</pre>

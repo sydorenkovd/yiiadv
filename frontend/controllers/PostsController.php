@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\Output;
 use Yii;
 use common\models\Posts;
 use yii\data\ActiveDataProvider;
@@ -75,7 +76,8 @@ class PostsController extends Controller
         }
     }
     public function actionDetails($id){
+        $test = Posts::getTest();
         $post = Posts::find()->where(['id' => $id])->one();
-        return $this->render('details', ['post' => $post]);
+        return $this->render('details', ['post' => $post, 'test' => $test]);
     }
 }
