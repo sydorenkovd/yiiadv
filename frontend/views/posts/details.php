@@ -15,7 +15,15 @@
 <hr>
 <pre>
 <?
-//print_r($query);
+foreach($query->with('author')->each() as $q){
+//    print_r($q);
+    /**
+     * that's the thing about relation model, I bind two tables in model Posts
+     * and than have access to binding tables by under property, that's sun in dark
+     */
+    echo $q->author->name;
+}
+
 /**
  * return array of data from database if we have a object parameter
  */

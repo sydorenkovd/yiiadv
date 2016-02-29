@@ -77,7 +77,9 @@ class PostsController extends Controller
     }
     public function actionDetails($id){
 //        $test = Posts::getTest();
-        $query = Posts::queryBuilder();
+        $query = Posts::find()->with();
+
+
         $post = Posts::find()->where(['id' => $id])->one();
         return $this->render('details', ['post' => $post, 'query' => $query]);
     }

@@ -120,6 +120,16 @@ class Posts extends ActiveRecord
 
         parent::afterSave($insert, $changedAttributes);
     }
+    public function getAuthor(){
+        return $this->hasOne(Author::className(), ['id' => 'author_id']);
+    }
+
+
+
+
+
+
+
     public static function getTest(){
         $db = Yii::$app->db;
         /**
