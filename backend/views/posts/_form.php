@@ -19,9 +19,11 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'file')->fileInput() ?>
 
 <!--    --><?//= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
-<?= $form->field($model, 'tags')->checkboxList(
-    ArrayHelper::map($tags, 'id', 'title')
-); ?>
+<?//= $form->field($model, 'tags')->checkboxList(
+//    ArrayHelper::map($tags, 'id', 'title')
+//);
+
+?>
     <?= $form->field($model, 'author_id')->dropDownList(
    ArrayHelper::map($authors, 'id','name'), ['prompt' => 'List of authors']
     )->hint('Choose the author') ?>

@@ -18,9 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
 <!--        --><?//= Html::a('Create Posts', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::button('Create Posts',['value'
-=> Url::to('/posts/create'), 'class' => 'btn btn-success', 'id'
-        => 'modalButton']) ?>
+        <?= Html::button('Create Posts',['value' => Url::to('/posts/create'), 'class' => 'btn btn-success', 'id' => 'modalButton']) ?>
         <? if(Yii::$app->user->identity->is_moderator == 1) :?>
         <?= Html::a('Moderate Posts', ['moderate'], ['class' => 'btn btn-info']) ?>
         <? endif; ?>

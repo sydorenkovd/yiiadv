@@ -155,10 +155,11 @@ class PostsController extends Controller
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 $model->id = Yii::$app->user->id;
+                $model->loadDefaultValues();
                 return $this->renderAjax('create', [
                     'model' => $model,
-                    'tags' => Tags::find()->all(),
-                    'authors' => Author::find()->all(),
+//                    'tags' => Tags::find()->all(),
+                    'authors' => Posts::find()->with('author')->asArray()->batch(),
 //                'category' => Category::find()->all(),
                 ]);
             }

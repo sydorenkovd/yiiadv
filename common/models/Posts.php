@@ -16,7 +16,6 @@ use yii\web\NotFoundHttpException;
  * @property string $title
  * @property string $description
  * @property string $create_date
- * @property string $tags
  * @property integer $is_moderate
  */
 
@@ -26,7 +25,6 @@ class Posts extends ActiveRecord
     /**
      * @inheritdoc
      */
-//    protected $tags = [];
     public static function tableName()
     {
         return '{{%tbl_posts}}';
@@ -41,11 +39,10 @@ class Posts extends ActiveRecord
             [['title', 'description'], 'required'],
             [['description'], 'string'],
             [['is_moderate'], 'integer'],
-            [['tags', 'create_date'], 'safe'],
+            [['create_date'], 'safe'],
             [['logo'], 'file'],
             [['title', 'logo'], 'string', 'max' => 255],
             [['image'], 'string', 'max' => 30],
-            [['tags'], 'string', 'max' => 20]
         ];
     }
 
@@ -62,7 +59,6 @@ class Posts extends ActiveRecord
             'image' => 'Image',
             'author_id' => 'Author Id',
         'logo' => 'logo',
-            'tags' => 'Tags',
             'is_moderate' => 'Is Moderate',
         ];
     }
@@ -111,21 +107,21 @@ class Posts extends ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterSave($insert, $changedAttributes)
-    {
-        TagPost::deleteAll(['post_id' => $this->id]);
-
-        if (is_array($this->tags) && !empty($this->tags)) {
-            $values = [];
-            foreach ($this->tags as $id) {
-                $values[] = [$this->id, $id];
-            }
-            self::getDb()->createCommand()
-                ->batchInsert(TagPost::tableName(), ['post_id', 'tag_id'], $values)->execute();
-        }
-
-        parent::afterSave($insert, $changedAttributes);
-    }
+//    public function afterSave($insert, $changedAttributes)
+//    {
+//        TagPost::deleteAll(['post_id' => $this->id]);
+//
+//        if (is_array($this->tags) && !empty($this->tags)) {
+//            $values = [];
+//            foreach ($this->tags as $id) {
+//                $values[] = [$this->id, $id];
+//            }
+//            self::getDb()->createCommand()
+//                ->batchInsert(TagPost::tableName(), ['post_id', 'tag_id'], $values)->execute();
+//        }
+//
+//        parent::afterSave($insert, $changedAttributes);
+//    }
     public function getAuthor(){
         return $this->hasOne(Author::className(), ['id' => 'author_id']);
     }
