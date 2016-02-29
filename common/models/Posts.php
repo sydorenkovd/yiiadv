@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use frontend\models\Category;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
@@ -25,7 +26,7 @@ class Posts extends ActiveRecord
     /**
      * @inheritdoc
      */
-    protected $tags = [];
+//    protected $tags = [];
     public static function tableName()
     {
         return '{{%tbl_posts}}';
@@ -70,24 +71,29 @@ class Posts extends ActiveRecord
      * establish post's tags
      * @param $tagsId
      */
-    public function setTags($tagsId){
-        $this->tags = (array) $tagsId;
-    }
+//    public function setTags($tagsId){
+//        $this->tags = (array) $tagsId;
+//    }
 
     /**
      * identificators of tags
      * @return array
      */
-    public function getTags(){
-        return ArrayHelper::getColumn($this->getTagPost()->all(), 'tag_id');
-    }
+//    public function getTags(){
+//        return ArrayHelper::getColumn($this->getTagPost()->all(), 'tag_id');
+//    }
 
     /**
      * return tags of post
      * @return \yii\db\ActiveQuery
      */
-    public function getTagPost(){
-        return $this->hasMany(TagPost::className(), ['post_id' => 'id']);
+//    public function getTagPost(){
+//        return $this->hasMany(TagPost::className(), ['post_id' => 'id']);
+//    }
+    public function getTagPost()
+    {
+        return $this->hasMany(Tags::className(), ['id' => 'tag_id'])
+            ->viaTable(TagPost::tableName(), ['post_id' => 'id']);
     }
     /**
      * return model of post
@@ -123,7 +129,9 @@ class Posts extends ActiveRecord
     public function getAuthor(){
         return $this->hasOne(Author::className(), ['id' => 'author_id']);
     }
-
+public function getCategory(){
+    return $this->hasOne(Category::className(), ['id' => 'category_id']);
+}
 
 
 

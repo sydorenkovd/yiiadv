@@ -15,12 +15,14 @@
 <hr>
 <pre>
 <?
-foreach($query->with('author')->each() as $q){
+foreach($query->with('author', 'category')->each() as $q){
 //    print_r($q);
     /**
      * that's the thing about relation model, I bind two tables in model Posts
      * and than have access to binding tables by under property, that's sun in dark
      */
+    echo $q->category->name;
+    echo "<br>";
     echo $q->author->name;
 }
 

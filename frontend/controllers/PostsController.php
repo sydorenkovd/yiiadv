@@ -48,10 +48,12 @@ class PostsController extends Controller
         $posts = $query->orderBy('create_date DESC')
             ->offset($pagination->offset)->limit($pagination->limit)->all();
         $model = new Posts();
+        $tags = Posts::find();
         return $this->render('index', [
             'posts' => $posts,
             'pagination' => $pagination,
             'model' => $model,
+            'tags' => $tags
         ]);
     }
 
@@ -66,6 +68,12 @@ class PostsController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    public function actionOrdertags($tag){
+        $model = Posts::find()->innerJoin('tbl_tagPost',
+            'tbl_posts.id = tbl_tagPost.post_id')->innerJoin('tbl_tag', 'tbl_tagPost.tag_id = tbl_tag.id')
+            ->where(['tbl_tag.title' => $tag])->all();
+        return $this->render('ordertags', ['model' => $model]);
+    }
 
     protected function findModel($id)
     {
@@ -77,7 +85,7 @@ class PostsController extends Controller
     }
     public function actionDetails($id){
 //        $test = Posts::getTest();
-        $query = Posts::find()->with();
+        $query = Posts::find()->where(['id' => $id]);
 
 
         $post = Posts::find()->where(['id' => $id])->one();
