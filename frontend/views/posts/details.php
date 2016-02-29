@@ -15,7 +15,18 @@
 <hr>
 <pre>
 <?
-print_r($query);
-
+//print_r($query);
+/**
+ * return array of data from database if we have a object parameter
+ */
+//foreach($query->batch() as $jobs){
+//    print_r($jobs);
+//}
+/**
+ * return each item from database if we have a object parameter
+ */
+//foreach($query->each() as $job){
+//    print_r($job);
+//}
 ?>
 </pre>

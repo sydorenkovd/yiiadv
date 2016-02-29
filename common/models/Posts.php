@@ -174,6 +174,13 @@ class Posts extends ActiveRecord
 //       return $query->select(['title', 'name'])->from('tbl_job')
 //           ->join('inner join', 'tbl_category', 'tbl_job.category_id = tbl_category.id')
 //           ->where(['>', 'tbl_job.category_id', 6])->all();
-
+        $category_id = [2, 3, 4];
+        /**
+         * like and order
+         */
+//return $query->select(['title', 'category_id'])->from('tbl_job')
+//    ->where(['like','title', ['php', 'java']])->orderBy(['category_id' => SORT_DESC])
+//    ->all();
+        return $query->from('tbl_job')->orderBy('id');
     }
 }
