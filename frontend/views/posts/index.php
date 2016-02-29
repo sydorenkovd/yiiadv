@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <ul class="list-group">
 <?
     if($posts) : ?>
-
         <? foreach($tags->with('tagPost')->each() as $tags) : ?>
     <? foreach($posts as $post) : ?>
             <?php
