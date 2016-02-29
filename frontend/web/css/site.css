@@ -90,3 +90,36 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 /*------------------------------------------------------*/
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 2px solid transparent;
+    white-space: nowrap;
+    outline: none;
+    transition: all 0.1s ease; }
+.btn-default {
+    background-color: #f2f2f2;
+    color: #505050;
+    border-width: 1px; }
+.btn-default:hover {
+    background-color: transparent;
+    text-decoration: none;
+    border-color: #e6e6e6;
+    border-width: 1px;
+    color: #505050; }
+.btn-default:active, .btn-default:focus {
+    background-color: transparent;
+    text-decoration: none;
+    border-color: #1690da;
+    border-width: 1px;
+    color: #1690da; }
+.btn-sm {
+    border-width: 1px;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 24px; }

@@ -20,37 +20,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <? foreach($tags->with('tagPost')->each() as $tags) : ?>
     <? foreach($posts as $post) : ?>
-<!--            <div class="tags">-->
-<!--                Тэги: --><?php //foreach($model->getTagPost()->all() as $post) : ?>
-<!--                    --><?//= $post->getTags()->one()->title ?>
-<!--                --><?php //endforeach; ?>
-<!--            </div>-->
-
             <?php
-//            foreach($tags->with('tagPost')->each() as $tags){
                 if($tags->id == $post->id) {
                     foreach($tags->tagPost as $tag){
                         $arrTags[] = $tag->title;
                     }
-
                 } ?>
                     <? endforeach; ?>
-            <?
-//                foreach($tag->tagPost as $ctag){
-//                    echo $ctag->title;
-//                    echo "<br>";
-//                }
-//            }
-?>
-            <div class="tags">
+
                 Tags: <?php
                 foreach($arrTags as $t) : ?>
-                    <a href="<?= Yii::$app->urlManager->createUrl(['posts/order-tags', 'tag' => $t]); ?>">
-                    <?= $t . " "; ?></a>
+                        <?= Html::a($t, Yii::$app->urlManager
+                        ->createUrl(['posts/order-tags', 'tag' => $t]), ['class' => 'btn btn-default btn-sm']) ?>
                 <?php
                 $arrTags = []; ?>
                 <? endforeach; ?>
-        </div>
+
             <? $author = Author::getAuthor($post->author_id); ?>
 <li class="list-group-item">
     Title: <a href="<?= Yii::$app->urlManager->createUrl(['posts/details', 'id' => $post->id]); ?>"><?= $post->title; ?></a>
