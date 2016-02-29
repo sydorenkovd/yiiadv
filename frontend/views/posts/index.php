@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="tags">
                 Tags: <?php
                 foreach($arrTags as $t) : ?>
-                    <a href="<?= Yii::$app->urlManager->createUrl(['posts/ordertags', 'tag' => $t]); ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl(['posts/order-tags', 'tag' => $t]); ?>">
                     <?= $t . " "; ?></a>
                 <?php
                 $arrTags = []; ?>
