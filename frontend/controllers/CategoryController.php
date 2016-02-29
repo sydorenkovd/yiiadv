@@ -46,7 +46,7 @@ class CategoryController extends Controller
     {
         $query = Category::find();
         $pagination = new Pagination([
-            'defaultPageSize' => 4,
+            'defaultPageSize' => 5,
             'totalCount' => $query->count(),
         ]);
         $categories = $query->orderBy('name')

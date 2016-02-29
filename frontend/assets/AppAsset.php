@@ -21,6 +21,10 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'js/qa.js',
+        'js/jquery.sticky.js',
+        'js/jquery.ThreeDots.min.js',
+        'js/yiiscript.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

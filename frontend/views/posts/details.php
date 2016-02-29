@@ -1,6 +1,9 @@
 <ul class="list-group">
 
-
+    <?php $this->title = 'Details';
+    $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => 'index'];
+    $this->params['breadcrumbs'][] = $this->title;
+    ?>
     <li class="list-group-item">
         <?= $post->title . '1'; ?>
     </li>

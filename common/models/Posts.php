@@ -168,6 +168,12 @@ class Posts extends ActiveRecord
         $query = new Query();
 //        $user = new Query();
 //        $userQuery = $user->select('id')->from('tbl_posts')->where(['title' => 'php'])->one();
-       return $query->select('user_id')->from('tbl_job')->groupBy('user_id')->orderBy(['user_id' => SORT_DESC])->all();
+        /**
+         * group by statement
+         */
+//       return $query->select(['title', 'name'])->from('tbl_job')
+//           ->join('inner join', 'tbl_category', 'tbl_job.category_id = tbl_category.id')
+//           ->where(['>', 'tbl_job.category_id', 6])->all();
+
     }
 }
