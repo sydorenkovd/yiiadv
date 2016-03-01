@@ -7,6 +7,7 @@ Yii 2 Advanced Project Template
 ![](jobbase22.png)
 ![](13123.png)
 ![](212.png)
+![](mixera.png)
 ![](treeum.jpg)
 
 DIRECTORY STRUCTURE
