@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Posts;
 use common\models\User;
 use frontend\models\UserForm;
 use yii\bootstrap\Alert;
@@ -120,5 +121,22 @@ class DoingController extends Controller
         }
 
         return $this->render('itemsList', ['lang' => $lang, 'year' => $year, 'category' => $category, 'filteredData' => $filteredData] );
+    }
+    public function actionTestDoing(){
+$posts = Posts::find()->where(['is_moderate' => Posts::IS_MODERATE])->all();
+        return $this->render('test-doing', ['posts' => $posts]);
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

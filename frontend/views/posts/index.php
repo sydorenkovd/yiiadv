@@ -17,20 +17,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <ul class="list-group">
 <?
     if($posts) : ?>
+
         <? foreach($tags->with('tagPost')->each() as $tags) : ?>
-    <? foreach($posts as $post) : ?>
+            <? $tags_id[] = $tags->id;
+            $tagPost[] = $tags->tagPost;
+            ?>
+        <? endforeach; ?>
+            <? foreach($posts as $post) : ?>
+
             <?php
-                if($tags->id == $post->id) {
-                    foreach($tags->tagPost as $tag){
+            for($i=0; $i < count($tags_id); $i++){
+                if($tags_id[$i] == $post->id) {
+                    print_r($tagPost);
+                    foreach($tagPost as $tags){
                         $arrTags[] = $tag->title;
                     }
-                } ?>
-                    <? endforeach; ?>
+                }
+            } ?>
+
 
                 Tags: <?php
                 foreach($arrTags as $t) : ?>
                         <?= Html::a($t, Yii::$app->urlManager
                         ->createUrl(['posts/order-tags', 'tag' => $t]), ['class' => 'btn btn-default btn-sm']) ?>
+
                 <?php
                 $arrTags = []; ?>
                 <? endforeach; ?>
@@ -42,8 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <li class="list-group-item">
                Author: <?= $author; ?>
             </li>
-
-
             <? endforeach; ?>
     <? else : ?>
         <h2 class="alert-danger">There are no posts</h2>

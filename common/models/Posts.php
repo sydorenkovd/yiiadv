@@ -21,6 +21,7 @@ use yii\web\NotFoundHttpException;
 
 class Posts extends ActiveRecord
 {
+    const IS_MODERATE = 1;
     public $file;
     /**
      * @inheritdoc
