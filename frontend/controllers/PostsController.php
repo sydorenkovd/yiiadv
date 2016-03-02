@@ -48,7 +48,7 @@ class PostsController extends Controller
         $posts = $query->orderBy('create_date DESC')
             ->offset($pagination->offset)->limit($pagination->limit)->all();
         $model = new Posts();
-        $tags = Posts::find()->where(['is_moderate' => Posts::IS_MODERATE]);
+        $tags = Posts::find()->where(['is_moderate' => Posts::IS_MODERATE])->with('tagPost')->each();
         return $this->render('index', [
             'posts' => $posts,
             'pagination' => $pagination,

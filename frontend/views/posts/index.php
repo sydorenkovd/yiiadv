@@ -17,40 +17,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <ul class="list-group">
 <?
     if($posts) : ?>
-
-        <? foreach($tags->with('tagPost')->each() as $tags) : ?>
-            <? $tags_id[] = $tags->id;
-            $tagPost[] = $tags->tagPost;
-            ?>
-        <? endforeach; ?>
-            <? foreach($posts as $post) : ?>
-
-            <?php
-            for($i=0; $i < count($tags_id); $i++){
-                if($tags_id[$i] == $post->id) {
-                    print_r($tagPost);
-                    foreach($tagPost as $tags){
-                        $arrTags[] = $tag->title;
-                    }
-                }
-            } ?>
-
-
-                Tags: <?php
-                foreach($arrTags as $t) : ?>
-                        <?= Html::a($t, Yii::$app->urlManager
-                        ->createUrl(['posts/order-tags', 'tag' => $t]), ['class' => 'btn btn-default btn-sm']) ?>
-
-                <?php
-                $arrTags = []; ?>
-                <? endforeach; ?>
-
-            <? $author = Author::getAuthor($post->author_id); ?>
+        <? foreach($posts as $post) : ?>
+<!--        --><?// foreach($tags as $tag) : ?>
+<!--            --><?// endforeach; ?>
+<!--            --><?php
+//                if($tag->id == $post->id) {
+//
+//                    foreach($tagPost as $tags){
+//                            $arrTags[] = $tags[$k]->title;}
+//            } ?>
+<!--            Tags: --><?php
+//                foreach($arrTags as $t) : ?>
+<!--                        --><?//= Html::a($t, Yii::$app->urlManager
+//                        ->createUrl(['posts/order-tags', 'tag' => $t]), ['class' => 'btn btn-default btn-sm']) ?>
+<!---->
+<!--                --><?php //$arrTags = []; ?>
+<!--                --><?// endforeach; ?>
 <li class="list-group-item">
     Title: <a href="<?= Yii::$app->urlManager->createUrl(['posts/details', 'id' => $post->id]); ?>"><?= $post->title; ?></a>
 </li>
             <li class="list-group-item">
-               Author: <?= $author; ?>
+               Author: <?= $post->author->name; ?>
             </li>
             <? endforeach; ?>
     <? else : ?>
