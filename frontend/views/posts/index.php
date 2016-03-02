@@ -18,50 +18,54 @@ $this->params['breadcrumbs'][] = $this->title;
 <?
     if($posts) : ?>
         <? foreach($posts as $post) : ?>
-<!--        --><?// foreach($tags as $tag) : ?>
-<!--            --><?// endforeach; ?>
-<!--            --><?php
+            <li class="list-group-item">
+                Title: <a href="<?= Yii::$app->urlManager->createUrl(['posts/details', 'id' => $post->id]); ?>"><?= $post->title; ?></a>
+            </li>
+            <li class="list-group-item">
+                Author: <?= $post->author->name; ?>
+            </li>
+        <? endforeach; ?>
+    <? else : ?>
+        <h2 class="alert-danger">There are no posts</h2>
+    <? endif; ?>
+    </ul>
+    <!--    --><?//= GridView::widget([
+    //        'dataProvider' => $dataProvider,
+    //        'columns' => [
+    //            ['class' => 'yii\grid\SerialColumn'],
+    //
+    ////            'id',
+    //            'title',
+    //            'description:ntext',
+    ////            'create_date',
+    ////            'image',
+    //             'author',
+    //            // 'tags',
+    //            // 'is_moderate',
+    //
+    //            ['class' => 'yii\grid\ActionColumn'],
+    //        ],
+    //    ]); ?>
+
+</div>
+
+        <? foreach($tags as $tag) : ?>
+                   <? foreach($tag->tagPost as $tagp)   {
+        print_r($tagp->post_id);
 //                if($tag->id == $post->id) {
 //
 //                    foreach($tagPost as $tags){
 //                            $arrTags[] = $tags[$k]->title;}
-//            } ?>
+//            }
+                } ?>
+
 <!--            Tags: --><?php
 //                foreach($arrTags as $t) : ?>
 <!--                        --><?//= Html::a($t, Yii::$app->urlManager
 //                        ->createUrl(['posts/order-tags', 'tag' => $t]), ['class' => 'btn btn-default btn-sm']) ?>
 <!---->
 <!--                --><?php //$arrTags = []; ?>
-<!--                --><?// endforeach; ?>
-<li class="list-group-item">
-    Title: <a href="<?= Yii::$app->urlManager->createUrl(['posts/details', 'id' => $post->id]); ?>"><?= $post->title; ?></a>
-</li>
-            <li class="list-group-item">
-               Author: <?= $post->author->name; ?>
-            </li>
-            <? endforeach; ?>
-    <? else : ?>
-        <h2 class="alert-danger">There are no posts</h2>
-    <? endif; ?>
-        </ul>
-<!--    --><?//= GridView::widget([
-//        'dataProvider' => $dataProvider,
-//        'columns' => [
-//            ['class' => 'yii\grid\SerialColumn'],
-//
-////            'id',
-//            'title',
-//            'description:ntext',
-////            'create_date',
-////            'image',
-//             'author',
-//            // 'tags',
-//            // 'is_moderate',
-//
-//            ['class' => 'yii\grid\ActionColumn'],
-//        ],
-//    ]); ?>
+                <? endforeach; ?>
 
-</div>
 
 <?//= Html::a('Go!', Url::toRoute(['details', 'id' => $post->id]), ['class' => 'btn btn-default'])?>
