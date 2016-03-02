@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Tags;
 use frontend\Output;
 use Yii;
 use common\models\Posts;
@@ -35,7 +36,7 @@ class PostsController extends Controller
      * Lists all Posts models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndexTest()
     {
 //        $dataProvider = new ActiveDataProvider([
 //            'query' => Posts::find(),
@@ -54,6 +55,15 @@ class PostsController extends Controller
             'pagination' => $pagination,
             'model' => $model,
             'tags' => $tags
+        ]);
+    }
+    public function actionIndex()
+    {
+        $posts = new Posts();
+//        $tags = Tags::find();
+        return $this->render('index', [
+            'posts' => $posts->getPublishedPosts(),
+//            'tags' => $tags
         ]);
     }
 

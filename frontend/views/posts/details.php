@@ -1,3 +1,6 @@
+<?php
+use yii\helpers\Html;
+?>
 <ul class="list-group">
 
     <?php $this->title = 'Details';
@@ -13,17 +16,17 @@
 </ul>
 <?= $this->blocks['block1'] ?>
 <hr>
-<pre>
 <?
-foreach($query->with('author', 'category')->each() as $q){
+foreach($query->with('tagPost')->each() as $q){
 //    print_r($q);
     /**
      * that's the thing about relation model, I bind two tables in model Posts
      * and than have access to binding tables by under property, that's sun in dark
      */
-    echo $q->category->name;
-    echo "<br>";
-    echo $q->author->name;
+    for($i = 0; $i < count($q->tagPost); $i++) {
+ echo Html::a($q->tagPost[$i]->title, Yii::$app->urlManager
+    ->createUrl(['posts/order-tags', 'tag' => $q->tagPost[$i]->title]), ['class' => 'btn btn-default btn-sm']);
+    }
 }
 
 /**
@@ -39,4 +42,3 @@ foreach($query->with('author', 'category')->each() as $q){
 //    print_r($job);
 //}
 ?>
-</pre>

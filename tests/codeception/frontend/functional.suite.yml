@@ -5,7 +5,7 @@
 # (tip: better to use with frameworks).
 
 # RUN `build` COMMAND AFTER ADDING/REMOVING MODULES.
-#basic/web/index.php
+#basic/web/index-test.php
 class_name: FunctionalTester
 modules:
     enabled:

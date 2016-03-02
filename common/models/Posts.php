@@ -2,12 +2,14 @@
 
 namespace common\models;
 
-use frontend\models\Category;
 use Yii;
+use yii\data\ActiveDataProvider;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
-use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
+use frontend\models\Category;
+
 
 /**
  * This is the model class for table "{{%tbl_posts}}".
@@ -87,11 +89,26 @@ class Posts extends ActiveRecord
 //    public function getTagPost(){
 //        return $this->hasMany(TagPost::className(), ['post_id' => 'id']);
 //    }
+    public function getPublishedPosts()
+    {
+        return new ActiveDataProvider([
+            'query' => Posts::find()
+                ->where(['is_moderate' => self::IS_MODERATE])
+                ->orderBy(['create_date' => SORT_DESC])
+        ]);
+    }
     public function getTagPost()
     {
         return $this->hasMany(Tags::className(), ['id' => 'tag_id'])
             ->viaTable(TagPost::tableName(), ['post_id' => 'id']);
     }
+    public function getTagPosts()
+    {
+        return $this->hasMany(
+            TagPost::className(), ['post_id' => 'id']
+        );
+    }
+
     /**
      * return model of post
      * @param $id
