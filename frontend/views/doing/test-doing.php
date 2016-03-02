@@ -1,7 +1,12 @@
 <pre>
 <?php
-foreach($posts as $post){
-    print_r($post->title);
+//$d = new \common\models\Doing();
+//if($s = $d->trans(2, ['email' => 'foreach@google.com'])){
+//   print_r($s);
+//}
+
+foreach($doing as $do) {
+    print_r($do->doingName->surname);
 }
 ?>
 </pre>

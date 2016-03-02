@@ -8,7 +8,7 @@ use yii\helpers\Html;
     $this->params['breadcrumbs'][] = $this->title;
     ?>
     <li class="list-group-item">
-        <?= $post->title . '1'; ?>
+        <?= $post->title; ?>
     </li>
     <li class="list-group-item">
         <?= $post->description; ?>

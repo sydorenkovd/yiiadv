@@ -9,6 +9,9 @@ use yii\bootstrap\Alert;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
+use common\models\Doing;
+use common\models\DoingName;
+
 
 class DoingController extends Controller
 {
@@ -122,19 +125,10 @@ class DoingController extends Controller
 
         return $this->render('itemsList', ['lang' => $lang, 'year' => $year, 'category' => $category, 'filteredData' => $filteredData] );
     }
-    public function actionTestDoing(){
-$posts = Posts::find()->where(['is_moderate' => Posts::IS_MODERATE])->all();
-        return $this->render('test-doing', ['posts' => $posts]);
-
-
-
-
-
-
-
-
-
-
+    public function actionTestDoing()
+    {
+$doing = Doing::find()->all();
+        return $this->render('test-doing', ['doing' => $doing]);
 
 
 

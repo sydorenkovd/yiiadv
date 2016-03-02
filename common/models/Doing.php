@@ -55,9 +55,22 @@ public function behaviors(){
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'id_name' => 'Name ID',
             'email' => 'Email',
             'created_at' => 'Create time',
             'updated_at' => 'Update time',
         ];
+    }
+    public function trans($id, $param = []){
+        $customer = Doing::findOne($id);
+        $res = Doing::getDb()->transaction(function($db) use ($customer, $param){
+           $customer->email = $param['email'];
+            $customer->save();
+            return $customer;
+        });
+        return $res;
+    }
+    public function getDoingName(){
+        return $this->hasOne(DoingName::className(), ['id' => 'id_name']);
     }
 }
