@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Locations;
 use common\models\LocationsSearch;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -90,6 +91,13 @@ class LocationsController extends Controller
         }
     }
 
+    public function actionGetCityProvince($zipId){
+        /**
+         * find the zip code from location
+         */
+        $location = Locations::findOne($zipId);
+        echo Json::encode($location);
+    }
     /**
      * Deletes an existing Locations model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

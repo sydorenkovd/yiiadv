@@ -38,8 +38,13 @@ use common\models\Locations;
 <?php
 $script = <<< JS
 $('#zipCode').change(function(){
-alert('Zip zip');
-})
+var zipId = $(this).val();
+ $.get('/locations/get-city-province', { zipId : zipId}, function(data){
+var data = $.parseJSON(data);
+ $('#customers-city').attr('value', data.city);
+ $('#customers-provice').attr('value', data.province);
+ });
+});
 JS;
 $this->registerJs($script);
 ?>
