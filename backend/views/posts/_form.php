@@ -11,7 +11,7 @@ use yii\helpers\ArrayHelper;
 
 <div class="posts-form">
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['enableAjaxValidation'=> true, 'options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 

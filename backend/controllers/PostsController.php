@@ -14,6 +14,8 @@ use common\models\Author;
 use backend\models\PostSearch;
 use yii\web\UploadedFile;
 use yii\web\ForbiddenHttpException;
+use yii\widgets\ActiveForm;
+
 /**
  * PostsController implements the CRUD actions for Posts model.
  */
@@ -141,7 +143,10 @@ class PostsController extends Controller
     {
         if (Yii::$app->user->can('create-post')) {
             $model = new Posts();
-
+if(Yii::$app->request->isAjax && $model->load($_POST)){
+    Yii::$app->response->format = 'json';
+    return ActiveForm::validate($model);
+}
             if ($model->load(Yii::$app->request->post())) {
                 /*
                 * get the instance of the uploaded file
@@ -159,7 +164,7 @@ class PostsController extends Controller
                 return $this->renderAjax('create', [
                     'model' => $model,
 //                    'tags' => Tags::find()->all(),
-                    'authors' => Posts::find()->with('author')->asArray()->batch(),
+                    'authors' => Author::find()->all(),
 //                'category' => Category::find()->all(),
                 ]);
             }

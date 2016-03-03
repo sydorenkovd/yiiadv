@@ -43,12 +43,19 @@ class Posts extends ActiveRecord
             [['description'], 'string'],
             [['is_moderate'], 'integer'],
             [['create_date'], 'safe'],
+            ['create_date', 'checkDate'],
             [['logo'], 'file'],
             [['title', 'logo'], 'string', 'max' => 255],
             [['image'], 'string', 'max' => 30],
         ];
     }
-
+public function checkDate($attribute, $params){
+    $today = date('Y-m-d');
+    $selectedDate = $this->create_date;
+    if($selectedDate > $today){
+        $this->addError($attribute, 'Create date must be smaller');
+    }
+}
     /**
      * @inheritdoc
      */
