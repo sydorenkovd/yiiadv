@@ -127,7 +127,7 @@ class DoingController extends Controller
     }
     public function actionTestDoing()
     {
-$doing = Doing::find()->all();
+$doing = Doing::findOne(2);
         return $this->render('test-doing', ['doing' => $doing]);
 
 

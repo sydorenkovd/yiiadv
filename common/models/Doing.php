@@ -71,6 +71,7 @@ public function behaviors(){
         return $res;
     }
     public function getDoingName(){
+//        return $this->hasOne(DoingName::className(), ['id' => 'id_name'])->where('id < :id', [':id'=>$id]);
         return $this->hasOne(DoingName::className(), ['id' => 'id_name']);
     }
 }

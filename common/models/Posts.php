@@ -146,12 +146,6 @@ class Posts extends ActiveRecord
 public function getCategory(){
     return $this->hasOne(Category::className(), ['id' => 'category_id']);
 }
-
-
-
-
-
-
     public static function getTest(){
         $db = Yii::$app->db;
         /**

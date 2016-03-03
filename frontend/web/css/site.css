@@ -93,6 +93,7 @@ a.desc:after {
 .btn {
     display: inline-block;
     margin-bottom: 0;
+    margin-top: 1px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -123,3 +124,21 @@ a.desc:after {
     border-radius: 5px;
     font-size: 12px;
     line-height: 24px; }
+.btn-lg {
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 25px; }
+.btn-lg:active, .btn-lg:focus {
+    line-height: 32px; }
+.btn-border-success {
+    border-color: #84cf2f;
+    color: #649c24;
+    background-color: transparent; }
+.btn-border-success:hover {
+    background-color: #84cf2f;
+    color: #fff; }
+.btn-border-success:active, .btn-border-success:focus {
+    box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+    border-color: #95e835; }

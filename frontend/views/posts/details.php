@@ -17,18 +17,14 @@ use yii\helpers\Html;
 <?= $this->blocks['block1'] ?>
 <hr>
 <?
-foreach($query->with('tagPost')->each() as $q){
-//    print_r($q);
+foreach($query->tagPost as $tag){
     /**
      * that's the thing about relation model, I bind two tables in model Posts
      * and than have access to binding tables by under property, that's sun in dark
      */
-    for($i = 0; $i < count($q->tagPost); $i++) {
- echo Html::a($q->tagPost[$i]->title, Yii::$app->urlManager
-    ->createUrl(['posts/order-tags', 'tag' => $q->tagPost[$i]->title]), ['class' => 'btn btn-default btn-sm']);
+ echo Html::a($tag->title, Yii::$app->urlManager
+    ->createUrl(['posts/order-tags', 'tag' => $tag->title]), ['class' => 'btn btn-default btn-sm']);
     }
-}
-
 /**
  * return array of data from database if we have a object parameter
  */

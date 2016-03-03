@@ -5,8 +5,9 @@
 //   print_r($s);
 //}
 
-foreach($doing as $do) {
-    print_r($do->doingName->surname);
-}
+//foreach($doing as $do) {
+//    print_r($do->doingName->surname);
+//}
+print_r($doing->doingName->surname);
 ?>
 </pre>

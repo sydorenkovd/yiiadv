@@ -13,26 +13,37 @@ class m130524_201442_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%user}}', [
+        $this->createTable('tbl_user', [
             'id' => $this->primaryKey(),
+            'full_name' => $this->string()->notNull(),
             'username' => $this->string()->notNull()->unique(),
-            'auth_key' => $this->string(32)->notNull(),
-            'password_hash' => $this->string()->notNull(),
-            'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
+            'password_hash' => $this->string()->notNull(),
+            'auth_key' => $this->string(32)->notNull(),
+            'password_reset_token' => $this->string()->unique(),
+
 
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
 
-        $this->createTable('{{%interview}}', [
-            'id' => Schema::TYPE_PK,
-            'name' => Schema::TYPE_STRING . ' NOT NULL',
-            'sex' => Schema::TYPE_BOOLEAN . ' NOT NULL',
-            'planets' => Schema::TYPE_STRING . ' NOT NULL',
-            'astronauts' => Schema::TYPE_STRING. ' NOT NULL',
-            'planet' => Schema::TYPE_INTEGER . ' NOT NULL',
+        $this->createTable('{{tbl_job}}', [
+            'id' => $this->primaryKey(),
+            'category_id' => $this->integer(),
+            'user_id' => $this->integer(),
+            'title' => $this->string()->notNull(),
+            'description' => $this->text()->notNull(),
+            'type' => $this->string()->notNull(),
+            'requirement' => $this->string()->notNull(),
+            'salary' => $this->string()->notNull(),
+            'city' => $this->string(32)->notNull(),
+            'zipcode' => $this->string(32)->notNull(),
+            'contact_email' => $this->string(32)->notNull(),
+            'contact_phone' => $this->string(32)->notNull(),
+            'is_published' => $this->string(1)->defaultValue(0),
+            'create_date' => $this->integer()->notNull()
+
         ], $tableOptions);
     }
 

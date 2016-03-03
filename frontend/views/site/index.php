@@ -11,9 +11,9 @@ $this->title = 'My Yii Application';
 
         <p class="lead">Browse our open job listings or find employees</p>
 
-        <p><a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-lg btn-success" href="<?= Yii::$app
+        <p><a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-sm btn-success" href="<?= Yii::$app
                 ->urlManager->createUrl('job'); ?>">Start Browsing</a>
-            <a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-lg btn-primary" href="<?= Yii::$app
+            <a style="border: 2px; margin: 3px; padding: 10px 14px;" class="btn btn-sm btn-primary" href="<?= Yii::$app
                 ->urlManager->createUrl('job/create'); ?>">Create Listnings</a></p>
     </div>
 
