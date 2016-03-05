@@ -56,12 +56,14 @@ class DoingController extends Controller
     public function actionUserform(){
         $userform = new Doing();
         $surname = new DoingName();
-        if($userform->load(Yii::$app->request->post()) && $userform->validate()){
+        if($userform->load(Yii::$app->request->post()) && $userform->validate()
+            && $surname->load(Yii::$app->request->post())){
 //            echo "<pre>";
 //            print_r($userform->getErrors());
 //            echo "</pre>";
 //            die();
             $userform->save();
+            $surname->save();
             Yii::$app->session->setFlash('done', 'Successfully!');
             return $this->redirect(Yii::$app->urlManager->createUrl('doing/userform'));
         } else {
