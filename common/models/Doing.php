@@ -39,7 +39,7 @@ public function behaviors(){
     public function rules()
     {
         return [
-            [['name', 'email'], 'required'],
+            [['name', 'email', 'id_surname'], 'required'],
             [['name'], 'string', 'max' => 25],
             [['email'], 'string', 'max' => 50],
             [['created_at'], 'safe'],
@@ -55,7 +55,7 @@ public function behaviors(){
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'id_name' => 'Name ID',
+            'id_surname' => 'Id Surname',
             'email' => 'Email',
             'created_at' => 'Create time',
             'updated_at' => 'Update time',
@@ -71,7 +71,7 @@ public function behaviors(){
         return $res;
     }
     public function getDoingName(){
-//        return $this->hasOne(DoingName::className(), ['id' => 'id_name'])->where('id < :id', [':id'=>$id]);
-        return $this->hasOne(DoingName::className(), ['id' => 'id_name']);
+//        return $this->hasOne(DoingName::className(), ['id' => 'id_surname'])->where('id < :id', [':id'=>$id]);
+        return $this->hasOne(DoingName::className(), ['id' => 'id_surname']);
     }
 }

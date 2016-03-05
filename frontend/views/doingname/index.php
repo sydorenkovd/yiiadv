@@ -4,9 +4,7 @@
 <h1>doingname/index</h1>
 <pre>
 <?php
-foreach($dn->doing as $item){
-    echo $item->email;
-}
+echo \yii\helpers\Html::a('Create', Yii::$app->urlManager->createUrl(['doingname/create']), ['class' => 'btn btn-info']);
 
 ?>
     </pre>

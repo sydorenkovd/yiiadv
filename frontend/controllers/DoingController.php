@@ -54,13 +54,18 @@ class DoingController extends Controller
         return $this->render('index', ['exm' => $exm]);
     }
     public function actionUserform(){
-        $userform = new Userform();
+        $userform = new Doing();
+        $surname = new DoingName();
         if($userform->load(Yii::$app->request->post()) && $userform->validate()){
+//            echo "<pre>";
+//            print_r($userform->getErrors());
+//            echo "</pre>";
+//            die();
             $userform->save();
-            Yii::$app->session->setFlash('done', 'Succesfully!');
+            Yii::$app->session->setFlash('done', 'Successfully!');
             return $this->redirect(Yii::$app->urlManager->createUrl('doing/userform'));
         } else {
-            return $this->render('userform', ['userform' => $userform]);
+            return $this->render('userform', ['userform' => $userform, 'surname' => $surname]);
         }
     }
     public function actionDatabase(){

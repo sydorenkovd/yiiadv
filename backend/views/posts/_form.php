@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
-//use common\models\Author;
+use common\models\Author;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Posts */
 /* @var $form yii\widgets\ActiveForm */
@@ -25,7 +25,7 @@ use yii\helpers\ArrayHelper;
 
 ?>
     <?= $form->field($model, 'author_id')->dropDownList(
-   ArrayHelper::map($authors, 'id','name'), ['prompt' => 'List of authors']
+        Author::find()->select(['name', 'id'])->with('posts')->indexBy('id')->column(), ['prompt' => 'List of authors']
     )->hint('Choose the author') ?>
 
 <!--    --><?//= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>

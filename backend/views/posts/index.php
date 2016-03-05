@@ -41,9 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'rowOptions' => function($model){
           if($model->is_moderate){
-return ['class' => 'danger'];
+return ['class' => 'success'];
           } else {
-              return ['class' => 'success'];
+              return ['class' => 'danger'];
           }
         },
         'columns' => [
