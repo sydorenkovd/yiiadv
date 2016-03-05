@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $form = ActiveForm::begin(); ?>
 <?= $form->field($userform, 'name'); ?>
 <?= $form->field($userform, 'email'); ?>
+<? $form->field($userform, 'created_at')->hiddenInput(['default' => time()]); ?>
 <?= $form->field($userform, 'id_surname')->dropDownList(
     DoingName::find()->select(['surname', 'id'])->indexBy('id')->column(),
     ['prompt' => 'Select surname']);

@@ -39,9 +39,14 @@ public function behaviors(){
     public function rules()
     {
         return [
-            [['name', 'email', 'id_surname'], 'required'],
+            [[ 'email', 'id_surname', 'created_at'], 'required'],
             [['name'], 'string', 'max' => 25],
             [['email'], 'string', 'max' => 50],
+            [['name'], 'default', 'value' => 'Sydorenko Victor'],
+            [['created_at'], 'default', 'value' => function(){
+                $t = time();
+               return date('Y-m-d H:i:s', $t);
+            }],
             [['created_at'], 'safe'],
             [['updated_at'], 'safe']
         ];
