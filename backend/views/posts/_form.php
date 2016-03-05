@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\Author;
+use frontend\models\Category;
+use common\models\Tags;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Posts */
 /* @var $form yii\widgets\ActiveForm */
@@ -24,11 +26,26 @@ use common\models\Author;
 //);
 
 ?>
-    <?= $form->field($model, 'author_id')->dropDownList(
+    <?= $form->field($model, 'category_id')->label('Category')->dropDownList(
+        Category::find()->select(['name', 'id'])->with('posts')->indexBy('id')->column(), ['prompt' => 'List of categories']
+    )->hint('Choose the author') ?>
+    <?= $form->field($model, 'author_id')->label('Author')->dropDownList(
         Author::find()->select(['name', 'id'])->with('posts')->indexBy('id')->column(), ['prompt' => 'List of authors']
     )->hint('Choose the author') ?>
 
 <!--    --><?//= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
+<!--    --><?//
+//    echo "<pre>";
+//    print_r($model->listTags);
+//    echo "</pre>";
+//    die();
+//    ?>
+
+    <?= $form->field($model, 'tags')->label('Tags')->checkboxList(
+        $model->listTags, ['multiple'=> true, 'prompt' => 'List of Tags']
+    )->hint('Choose the Tags'); ?>
+
+
 
     <?= $form->field($model, 'create_date')->widget(
       \yii\jui\DatePicker::className(), [

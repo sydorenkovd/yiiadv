@@ -157,13 +157,14 @@ if(Yii::$app->request->isAjax && $model->load($_POST)){
                 //save the path in the db
 //            $model->logo = 'uploads/'. $imagename.'.'.$model->file->extension;
                 $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+//                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             } else {
                 $model->id = Yii::$app->user->id;
                 $model->loadDefaultValues();
                 return $this->renderAjax('create', [
                     'model' => $model,
-//                    'tags' => Tags::find()->all(),
+                    'tags' => Tags::find()->all(),
                     'authors' => Author::find()->all(),
 //                'category' => Category::find()->all(),
                 ]);

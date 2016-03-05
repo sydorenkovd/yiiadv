@@ -25,6 +25,12 @@ class Posts extends ActiveRecord
 {
     const IS_MODERATE = 1;
     public $file;
+    public $tags = [];
+
+    public function __construct($config = []){
+        $this->tags = ArrayHelper::map($this->tagPost, 'title', 'title');
+        parent::__construct($config);
+    }
     /**
      * @inheritdoc
      */
@@ -39,11 +45,12 @@ class Posts extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description'], 'required'],
+            [['title', 'description','author_id', 'category_id', 'tags'], 'required'],
             [['description'], 'string'],
             [['is_moderate'], 'integer'],
             [['create_date'], 'safe'],
             ['create_date', 'checkDate'],
+            [['tags'], 'in', 'range' => array_keys($this->listTags), 'allowArray' => true],
             [['logo'], 'file'],
             [['title', 'logo'], 'string', 'max' => 255],
             [['image'], 'string', 'max' => 30],
@@ -68,8 +75,10 @@ public function checkDate($attribute, $params){
             'create_date' => 'Create Date',
             'image' => 'Image',
             'author_id' => 'Author Id',
+            'category_id' => 'Category',
+            'tags' => 'Tags',
         'logo' => 'logo',
-            'is_moderate' => 'Is Moderate',
+            'is_moderate' => 'Is Moderate'
         ];
     }
 
@@ -128,6 +137,23 @@ public function checkDate($attribute, $params){
         } else {
             throw new NotFoundHttpException('The requested post does not exist');
         }
+    }
+
+    /**
+     * Return Tag list as ['id'=>'name']
+     * @return array
+     */
+    public function getListTags()
+    {
+        return ArrayHelper::map(Tags::find()->all(), 'title', 'title');
+    }
+    /**
+     * Устанавлиает тэги поста.
+     * @param $tagsId
+     */
+    public function setTags($tagsId)
+    {
+        $this->tags = (array) $tagsId;
     }
     /**
      * @inheritdoc
