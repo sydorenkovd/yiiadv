@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     echo "<div id='modalContent'></div>";
     Modal::end();
     ?>
-<?php Pjax::begin(); ?>
+<?php Pjax::begin(['id' => 'postsGrid']); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

@@ -18,7 +18,7 @@ class LocationsSearch extends Locations
     public function rules()
     {
         return [
-            [['location_id'], 'integer'],
+            [['id'], 'integer'],
             [['zip_code', 'city', 'province'], 'safe'],
         ];
     }
@@ -56,7 +56,7 @@ class LocationsSearch extends Locations
         }
 
         $query->andFilterWhere([
-            'location_id' => $this->location_id,
+            'id' => $this->id,
         ]);
 
         $query->andFilterWhere(['like', 'zip_code', $this->zip_code])

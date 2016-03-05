@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "{{%tbl_locations}}".
  *
- * @property integer $location_id
+ * @property integer $id
  * @property string $zip_code
  * @property string $city
  * @property string $province
@@ -40,7 +40,7 @@ class Locations extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'location_id' => 'Location ID',
+            'id' => 'ID',
             'zip_code' => 'Zip Code',
             'city' => 'City',
             'province' => 'Province',
