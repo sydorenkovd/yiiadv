@@ -12,6 +12,7 @@ use common\models\Locations;
  */
 class LocationsSearch extends Locations
 {
+    public $global;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class LocationsSearch extends Locations
     {
         return [
             [['id'], 'integer'],
-            [['zip_code', 'city', 'province'], 'safe'],
+            [['zip_code','global', 'city', 'province'], 'safe'],
         ];
     }
 
@@ -55,13 +56,13 @@ class LocationsSearch extends Locations
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
+        $query->orFilterWhere([
+            'id' => $this->global,
         ]);
 
-        $query->andFilterWhere(['like', 'zip_code', $this->zip_code])
-            ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'province', $this->province]);
+        $query->orFilterWhere(['like', 'zip_code', $this->global])
+            ->orFilterWhere(['like', 'city', $this->global])
+            ->orFilterWhere(['like', 'province', $this->global]);
 
         return $dataProvider;
     }
