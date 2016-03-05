@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Postt;
 use Yii;
 use common\models\Posts;
 use common\models\Tags;
@@ -141,8 +142,11 @@ class PostsController extends Controller
      */
     public function actionCreate()
     {
+
         if (Yii::$app->user->can('create-post')) {
-            $model = new Posts();
+            $modelPost = new Posts();
+            $model = new Postt($modelPost);
+
 if(Yii::$app->request->isAjax && $model->load($_POST)){
     Yii::$app->response->format = 'json';
     return ActiveForm::validate($model);
@@ -160,8 +164,9 @@ if(Yii::$app->request->isAjax && $model->load($_POST)){
 //                return $this->redirect(['view', 'id' => $model->id]);
                 return $this->redirect(['index']);
             } else {
-                $model->id = Yii::$app->user->id;
-                $model->loadDefaultValues();
+//                $model->id = Yii::$app->user->id;
+//                $model->loadDefaultValues();
+
                 return $this->renderAjax('create', [
                     'model' => $model,
                     'tags' => Tags::find()->all(),
