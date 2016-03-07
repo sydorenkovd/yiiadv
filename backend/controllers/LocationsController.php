@@ -67,7 +67,7 @@ class LocationsController extends Controller
             if($model->save())
             echo 1;
             else
-                echo 0;
+                print_r($model->getErrors());
 //            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
