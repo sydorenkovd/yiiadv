@@ -10,13 +10,14 @@ use yii\widgets\ActiveForm;
 
 <div class="locations-form">
 
-    <?php $form = ActiveForm::begin(['id' => $model->formName()]); ?>
+    <?php $form = ActiveForm::begin(['id' => $model->formName(), 'options' =>['enctype' =>  'multipart/form-data'] ]); ?>
 
     <?= $form->field($model, 'zip_code')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'province')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'file[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

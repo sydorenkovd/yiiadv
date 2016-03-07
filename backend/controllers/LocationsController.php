@@ -9,6 +9,7 @@ use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * LocationsController implements the CRUD actions for Locations model.
@@ -64,9 +65,15 @@ class LocationsController extends Controller
         $model = new Locations();
 
         if ($model->load(Yii::$app->request->post())) {
-            if($model->save())
-            echo 1;
-            else
+            $model->validate();
+                $model->file = UploadedFile::getInstances($model, 'file');
+            foreach($model->file as $file) {
+                $file->saveAs('uploads/' . $model->province . '.' . $model->file->extension);
+            }
+               if( $model->save()) {
+                   Yii::$app->session->setFlash('success', 'Successfully added');
+                   return $this->redirect(['index']);
+            } else
                 print_r($model->getErrors());
 //            return $this->redirect(['view', 'id' => $model->id]);
         } else {

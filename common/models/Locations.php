@@ -31,10 +31,11 @@ class Locations extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['zip_code', 'city', 'province'], 'required'],
+            [['zip_code', 'city', 'province', 'file'], 'required'],
+            ['file', 'file', 'extensions' => 'jpg, png','skipOnEmpty' => false, 'maxFiles' => 4],
             [['zip_code'], 'string', 'max' => 25],
 //            ['zip_code', ZipcodeValidator::className()],
-        ['zip_code', 'in', 'range' => self::find()->select('zip_code')->asArray()->column()],
+//        ['zip_code', 'in', 'range' => self::find()->select('zip_code')->asArray()->column()],
             ['city', 'trim'],
             ['city', CityValidator::className()],
             ['province', function($attribute, $params){
@@ -64,6 +65,8 @@ class Locations extends \yii\db\ActiveRecord
             'zip_code' => 'Zip Code',
             'city' => 'City',
             'province' => 'Province',
+            'file' => 'File',
+            'logo' => 'Logo'
         ];
     }
 }
