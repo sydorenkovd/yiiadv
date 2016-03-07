@@ -56,19 +56,9 @@ $provider = new \yii\data\ActiveDataProvider([
         ],
     ],
 ]);
-echo \yii\grid\GridView::widget([
+echo \yii\widgets\ListView::widget([
     'dataProvider' => $provider,
-    'filterModel' => $searchModel,
-    'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
-
-        'id',
-        'zip_code',
-        'city',
-        'province',
-        'file',
-        ['class' => 'yii\grid\ActionColumn'],
-    ],
+    'itemView' => '_instance',
 ]);
 ?>
 
