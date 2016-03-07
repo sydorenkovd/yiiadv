@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'zip_code',
             'city',
             'province',
-
+'file',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

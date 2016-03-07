@@ -72,6 +72,7 @@ class JobController extends Controller
         $pagination = new Pagination([
             'defaultPageSize' => 5,
             'totalCount' => $query->count(),
+//            'page' => 2
         ]);
         $jobs = $query->orderBy('create_date DESC')
             ->offset($pagination->offset)

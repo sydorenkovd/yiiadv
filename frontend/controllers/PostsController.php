@@ -45,6 +45,7 @@ class PostsController extends Controller
         $pagination = new Pagination([
             'defaultPageSize' => 5,
             'totalCount' => $query->count(),
+            'page' => 2
         ]);
         $posts = $query->orderBy('create_date DESC')
             ->offset($pagination->offset)->limit($pagination->limit)->all();
