@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'city',
             'province',
 'file',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\DataColumn'],
         ],
     ]); ?>
 

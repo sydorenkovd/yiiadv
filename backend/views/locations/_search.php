@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'global') ?>
+    <?= $form->field($model, 'global')->textInput(['style'=>['width' => '300px']]) ?>
 
 <!--    --><?//= $form->field($model, 'zip_code') ?>
 <!---->
