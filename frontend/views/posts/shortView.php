@@ -1,6 +1,7 @@
 <?php
 use common\models\TagPost;
 use yii\helpers\Html;
+//use yii\helpers\HtmlPurifier;
 ?>
 <div>
 <h2><?= $model->title ?></h2>

@@ -61,9 +61,18 @@ class PostsController extends Controller
     public function actionIndex()
     {
         $posts = new Posts();
+        $model = Posts::find()->where(['is_moderate' => 1]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model,
+            'pagination' => [
+                'pageSize' => 3,
+            ],
+        ]);
 //        $tags = Tags::find();
         return $this->render('index', [
-            'posts' => $posts->getPublishedPosts(),
+//            'posts' => $posts->getPublishedPosts(),
+        'data' => $dataProvider,
+            'model' => $model,
 //            'tags' => $tags
         ]);
     }
