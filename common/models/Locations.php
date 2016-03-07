@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use app\components\ZipcodeValidator;
 use backend\components\CityValidator;
 use Yii;
 
@@ -31,6 +32,7 @@ class Locations extends \yii\db\ActiveRecord
         return [
             [['zip_code', 'city', 'province'], 'required'],
             [['zip_code'], 'string', 'max' => 25],
+            ['zip_code', ZipcodeValidator::className()],
             ['city', 'trim'],
             ['city', CityValidator::className()],
             ['province', function($attribute, $params){
