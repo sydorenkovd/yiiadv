@@ -64,7 +64,20 @@ class PostsController extends Controller
 //            'dataProvider' => $dataProvider,
 //        ]);
         $searchModel = new PostSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = Posts::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+// join with relation `author` that is a relation to the table `users`
+// and set the table alias to be `author`
+        $query->joinWith(['author' => function($query) { $query->from(['author' => 'tbl_author']); }]);
+// enable sorting for the related column
+        $dataProvider->sort->attributes['author.name'] = [
+            'asc' => ['author.name' => SORT_ASC],
+            'desc' => ['author.name' => SORT_DESC],
+        ];
         $model = Posts::find()->all();
 //        $dataProvider = new ActiveDataProvider([
 //            'query' => Posts::find(),

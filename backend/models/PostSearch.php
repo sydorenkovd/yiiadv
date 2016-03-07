@@ -22,7 +22,6 @@ class PostSearch extends Posts
             [['title', 'description', 'create_date', 'image', 'is_moderate'], 'safe'],
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -64,7 +63,8 @@ class PostSearch extends Posts
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'is_moderate', $this->is_moderate]);
+            ->andFilterWhere(['like', 'is_moderate', $this->is_moderate])
+            ->andFilterWhere(['like', 'author.name', $this->getAttribute('author.name')]);
 
         return $dataProvider;
     }

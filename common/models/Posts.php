@@ -48,7 +48,7 @@ class Posts extends ActiveRecord
             [['title', 'description','author_id', 'category_id'], 'required'],
             [['description'], 'string'],
             [['is_moderate'], 'integer'],
-            [['create_date'], 'safe'],
+            [['create_date', 'author.name'], 'safe'],
             ['create_date', 'checkDate'],
 //            [['tags'], 'in', 'range' => array_keys($this->listTags), 'allowArray' => true],
             [['logo'], 'file'],
@@ -68,8 +68,8 @@ public function checkDate($attribute, $params){
      */
     public function attributeLabels()
     {
-        return [
-            'id' => 'ID',
+
+            ['id' => 'ID',
             'title' => 'Title',
             'description' => 'Description',
             'create_date' => 'Create Date',
@@ -78,8 +78,8 @@ public function checkDate($attribute, $params){
             'category_id' => 'Category',
             'tags' => 'Tags',
         'logo' => 'logo',
-            'is_moderate' => 'Is Moderate'
-        ];
+            'is_moderate' => 'Is Moderate'];
+    return array_merge(parent::attributes(), ['author.name']);
     }
 
     /**

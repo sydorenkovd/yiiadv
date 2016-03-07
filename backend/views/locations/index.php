@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+//        'pager' => new \yii\data\Pagination(),
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -30,7 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'city',
             'province',
 'file',
-            ['class' => 'yii\grid\DataColumn'],
+            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\DataColumn'
+            ],
         ],
     ]); ?>
 

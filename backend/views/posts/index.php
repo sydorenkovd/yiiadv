@@ -52,6 +52,7 @@ return ['class' => 'success'];
             'id',
             'title',
             'description:ntext',
+            'author.name',
 //            'create_date',
             'image',
             // 'tags',
