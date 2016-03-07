@@ -5,6 +5,7 @@ namespace common\models;
 use app\components\ZipcodeValidator;
 use backend\components\CityValidator;
 use Yii;
+use yii\validators\RangeValidator;
 
 /**
  * This is the model class for table "{{%tbl_locations}}".
@@ -32,7 +33,8 @@ class Locations extends \yii\db\ActiveRecord
         return [
             [['zip_code', 'city', 'province'], 'required'],
             [['zip_code'], 'string', 'max' => 25],
-            ['zip_code', ZipcodeValidator::className()],
+//            ['zip_code', ZipcodeValidator::className()],
+        ['zip_code', 'in', 'range' => self::find()->select('zip_code')->asArray()->column()],
             ['city', 'trim'],
             ['city', CityValidator::className()],
             ['province', function($attribute, $params){

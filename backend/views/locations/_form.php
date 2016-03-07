@@ -25,7 +25,13 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-<?php //$script = <<< JS
+
+
+<?php
+ /**
+  * script for ajax form reloaded
+  */
+ //$script = <<< JS
 //$('form#{$model->formName()}').on('beforeSubmit', function(e){
 // var \$form = $(this);
 // $.post(
