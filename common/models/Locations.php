@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\components\CityValidator;
 use Yii;
 
 /**
@@ -31,7 +32,7 @@ class Locations extends \yii\db\ActiveRecord
             [['zip_code', 'city', 'province'], 'required'],
             [['zip_code'], 'string', 'max' => 25],
             ['city', 'trim'],
-            ['city', 'validateCity'],
+            ['city', CityValidator::className()],
             ['province', function($attribute, $params){
                 if($this->$attribute == 'error'){
                     $this->addError($attribute, 'This string contains error message');
@@ -48,12 +49,6 @@ class Locations extends \yii\db\ActiveRecord
 //        return $('#city').val() == 'USA';
 //    }"]
 //        ];
-    }
-    public function validateCity($attribute, $params)
-    {
-        if (!in_array($this->$attribute, ['USA', 'Web'])) {
-            $this->addError($attribute, 'The city must be either "Dallas" or "Moscow".');
-        }
     }
     /**
      * @inheritdoc
