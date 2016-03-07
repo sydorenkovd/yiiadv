@@ -9,7 +9,7 @@ use yii\validators\RangeValidator;
 
 /**
  * This is the model class for table "{{%tbl_locations}}".
- *
+ * with id, zip_code, city, provice, file and logo
  * @property integer $id
  * @property string $zip_code
  * @property string $city

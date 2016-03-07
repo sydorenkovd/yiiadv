@@ -29,8 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'zip_code',
-            'city',
+            'zip_code',[
+            'label' => 'Town',
+                'value' =>  $model->city
+    ],
             'province',
         ],
     ]) ?>
@@ -42,7 +44,32 @@ $this->params['breadcrumbs'][] = $this->title;
 //echo $format->asEmail('sydorenkovd@gmail.com');
 //
 //
+$q = \common\models\Locations::find()->where(['>=', 'id', '1']);
+$provider = new \yii\data\ActiveDataProvider([
+    'query' => $q,
+    'pagination' => [
+        'pageSize' => 4
+    ],
+    'sort' => [
+        'defaultOrder' => [
+            'city' => SORT_DESC,
+        ],
+    ],
+]);
+echo \yii\grid\GridView::widget([
+    'dataProvider' => $provider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
 
+        'id',
+        'zip_code',
+        'city',
+        'province',
+        'file',
+        ['class' => 'yii\grid\ActionColumn'],
+    ],
+]);
 ?>
 
 
