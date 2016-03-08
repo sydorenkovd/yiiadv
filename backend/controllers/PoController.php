@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Poitem;
 use Yii;
 use common\models\Po;
 use common\models\PoSearch;
@@ -61,12 +62,13 @@ class PoController extends Controller
     public function actionCreate()
     {
         $model = new Po();
-
+        $modelsPoItems = [new Poitem()];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'modelsPoItems' => (empty($modelsPoItems)) ? [new Poitem()] : $modelsPoItems
             ]);
         }
     }
