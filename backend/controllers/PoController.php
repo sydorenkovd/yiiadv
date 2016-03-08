@@ -119,15 +119,67 @@ class PoController extends Controller
      */
     public function actionUpdate($id)
     {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
         $model = $this->findModel($id);
+        $modelsPoItems = $model->poItems;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $oldIDs = ArrayHelper::map($modelsPoItems, 'id', 'id');
+            $modelsPoItems = Model::createMultiple(Poitem::classname(), $modelsPoItems);
+            Model::loadMultiple($modelsPoItems, Yii::$app->request->post());
+            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsPoItems, 'id', 'id')));
+
+            // ajax validation
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ArrayHelper::merge(
+                    ActiveForm::validateMultiple($modelsPoItems),
+                    ActiveForm::validate($model)
+                );
+            }
+
+            // validate all models
+            $valid = $model->validate();
+            $valid = Model::validateMultiple($modelsPoItems) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $model->save(false)) {
+                        if (! empty($deletedIDs)) {
+                            Poitem::deleteAll(['id' => $deletedIDs]);
+                        }
+                        foreach ($modelsPoItems as $modelPoItem) {
+                            $modelPoItem->po_id = $model->id;
+                            if (! ($flag = $modelPoItem->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
         }
+
+        return $this->render('update', [
+            'model' => $model,
+            'modelsPoItems' => (empty($modelsPoItems)) ? [new Poitem()] : $modelsPoItems
+        ]);
     }
 
     /**
