@@ -6,9 +6,14 @@ use common\models\Poitem;
 use Yii;
 use common\models\Po;
 use common\models\PoSearch;
+use yii\base\Exception;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Model;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 /**
  * PoController implements the CRUD actions for Po model.
@@ -64,13 +69,46 @@ class PoController extends Controller
         $model = new Po();
         $modelsPoItems = [new Poitem()];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $modelsPoItems = Model::createMultiple(Poitem::classname());
+            Model::loadMultiple($modelsPoItems, Yii::$app->request->post());
+
+            // ajax validation
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ArrayHelper::merge(
+                    ActiveForm::validateMultiple($modelsPoItems),
+                    ActiveForm::validate($model)
+                );
+            }
+
+            // validate all models
+            $valid = $model->validate();
+            $valid = Model::validateMultiple($modelsPoItems) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $model->save(false)) {
+                        foreach ($modelsPoItems as $modelPoItem) {
+                            $modelPoItem->po_id = $model->id;
+                            if (! ($flag = $modelPoItem->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        } } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+        }
             return $this->render('create', [
                 'model' => $model,
                 'modelsPoItems' => (empty($modelsPoItems)) ? [new Poitem()] : $modelsPoItems
             ]);
-        }
     }
 
     /**
