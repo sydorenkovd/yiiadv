@@ -21,7 +21,8 @@
       "yiisoft/yii2-authclient": "*",
       "yiisoft/yii2-elasticsearch": "*",
       "yiisoft/yii2-jui": "*",
-      "yiisoft/yii2-redis": "*"
+      "yiisoft/yii2-redis": "*",
+      "wbraganca/yii2-dynamicform": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
