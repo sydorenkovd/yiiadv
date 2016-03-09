@@ -8,7 +8,6 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Poitems';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="poitem-index">
     <?= GridView::widget([

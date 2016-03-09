@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
          * just for now, than follow instruction and actuaaly install extencions
          */
         'export' => false,
+        'perfectScrollbar' => true,
         'columns' => [
             [
               'class' => 'kartik\grid\ExpandRowColumn',
