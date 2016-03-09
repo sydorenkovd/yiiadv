@@ -31,7 +31,13 @@ foreach($eventsDb as $eventDb) {
     $Event = new \yii2fullcalendar\models\Event();
     $Event->id = $eventDb->id;
     $Event->title = $eventDb->title;
+    if($eventDb->create_date < date('Y-m-d H:i:s')) {
+        $Event->color = 'red';
+    }/**
+     * $Event->start and end are actually required parameters
+     */
     $Event->start = $eventDb->create_date;
+    $Event->url = Yii::$app->urlManager->createUrl(['/event/view', 'id' => $Event->id]);
     $events[] = $Event;
 
 //    $Event = new \yii2fullcalendar\models\Event();
