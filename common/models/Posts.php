@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use frontend\models\Category;
+use creocoder\taggable\TaggableBehavior;
 
 
 /**
@@ -38,17 +39,26 @@ class Posts extends ActiveRecord
     {
         return '{{%tbl_posts}}';
     }
-
+    public function behaviors()
+    {
+        return [
+            'tagPost' => [
+                'class' => TaggableBehavior::className(),
+                'tagRelation' => 'tagPost'
+            ]
+            ];
+    }
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['title', 'description','author_id', 'category_id'], 'required'],
+//            [['title', 'description','author_id', 'category_id'], 'required'],
+            [['title', 'description'], 'required'],
             [['description'], 'string'],
             [['is_moderate'], 'integer'],
-            [['create_date', 'author.name'], 'safe'],
+            [['create_date'], 'safe'],
             ['create_date', 'checkDate'],
 //            [['tags'], 'in', 'range' => array_keys($this->listTags), 'allowArray' => true],
             [['logo'], 'file'],
@@ -79,7 +89,7 @@ public function checkDate($attribute, $params){
             'tags' => 'Tags',
         'logo' => 'logo',
             'is_moderate' => 'Is Moderate'];
-    return array_merge(parent::attributes(), ['author.name']);
+//    return array_merge(parent::attributes(), ['author.name']);
     }
 
     /**

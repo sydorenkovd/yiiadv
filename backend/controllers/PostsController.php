@@ -174,6 +174,7 @@ if(Yii::$app->request->isAjax && $model->load($_POST)){
                 //save the path in the db
 //            $model->logo = 'uploads/'. $imagename.'.'.$model->file->extension;
                 $model->save();
+//                print_r($model->getErrors());
 //                return $this->redirect(['view', 'id' => $model->id]);
                 return $this->redirect(['index']);
             } else {

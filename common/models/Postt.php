@@ -37,7 +37,7 @@ class Postt extends Model
         $this->postModel = $postModel;
         $this->setAttributes($this->postModel
             ->getAttributes(['title', 'description', 'file', 'category_id', 'author_id', 'create_date']));
-        $this->tags = ArrayHelper::map($postModel->tagPost, 'title', 'title');
+        $this->tags = ArrayHelper::map($postModel->tagPost, 'name', 'name');
         parent::__construct($config);
     }
 
@@ -91,7 +91,7 @@ class Postt extends Model
      */
     public function getListTags()
     {
-        return ArrayHelper::map(Tags::find()->all(), 'title', 'title');
+        return ArrayHelper::map(Tags::find()->all(), 'name', 'name');
     }
 
     /**

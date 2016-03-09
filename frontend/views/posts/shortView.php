@@ -17,8 +17,8 @@ use yii\helpers\Html;
     $tags = [];
     foreach($model->getTagPosts()->all() as $postTag) {
         $tag = $postTag->getTag()->one();
-        $tags[] = Html::a($tag->title, Yii::$app->urlManager
-            ->createUrl(['posts/order-tags', 'tag' => $tag->title]), ['class' => 'btn btn-default btn-sm']);
+        $tags[] = Html::a($tag->name, Yii::$app->urlManager
+            ->createUrl(['posts/order-tags', 'tag' => $tag->name]), ['class' => 'btn btn-default btn-sm']);
     } ?>
 
     Тэги: <?= implode($tags, ' | ') ?>

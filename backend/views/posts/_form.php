@@ -41,9 +41,9 @@ use common\models\Tags;
 //    die();
 //    ?>
 
-<!--    --><?//= $form->field($model, 'tags')->label('Tags')->checkboxList(
-//        $model->listTags, ['multiple'=> true, 'prompt' => 'List of Tags']
-//    )->hint('Choose the Tags'); ?>
+    <?= $form->field($model, 'tags')->label('Tags')->checkboxList(
+        $model->listTags, ['multiple'=> true, 'prompt' => 'List of Tags']
+    )->hint('Choose the Tags'); ?>
 
 
 
