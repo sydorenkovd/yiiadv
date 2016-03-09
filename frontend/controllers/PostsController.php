@@ -61,7 +61,7 @@ class PostsController extends Controller
     public function actionIndex()
     {
         $posts = new Posts();
-        $model = Posts::find()->where(['is_moderate' => 0]);
+        $model = Posts::find()->where(['is_moderate' => 1])->orderBy(['create_date' => SORT_DESC ]);
         $dataProvider = new ActiveDataProvider([
             'query' => $model,
             'pagination' => [

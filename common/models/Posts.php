@@ -55,7 +55,7 @@ class Posts extends ActiveRecord
     {
         return [
 //            [['title', 'description','author_id', 'category_id'], 'required'],
-            [['title', 'description'], 'required'],
+            [['title', 'description', 'author_id', 'category_id'], 'required'],
             [['description'], 'string'],
             [['is_moderate'], 'integer'],
             [['create_date'], 'safe'],
@@ -67,10 +67,10 @@ class Posts extends ActiveRecord
         ];
     }
 public function checkDate($attribute, $params){
-    $today = date('Y-m-d');
+    $today = date('Y-m-d H:i:s');
     $selectedDate = $this->create_date;
-    if($selectedDate > $today){
-        $this->addError($attribute, 'Create date must be smaller');
+    if($selectedDate >= $today){
+        $this->addError($attribute, 'Create date must be smaller' . $selectedDate . "-----" . $today);
     }
 }
     /**

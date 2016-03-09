@@ -47,7 +47,7 @@ class Postt extends Model
     public function rules()
     {
         return [
-            [['title', 'description', 'tags'], 'required'],
+            [['title', 'description','author_id', 'category_id', 'tags'], 'required'],
             [['description', 'title'], 'string'],
             [['tags'], 'in', 'range' => array_keys($this->listTags), 'allowArray' => true],
         ];
@@ -61,7 +61,9 @@ class Postt extends Model
         return [
             'title' => 'Title',
             'description' => 'Body',
-            'tags' => 'Tags'
+            'tags' => 'Tags',
+            'author_id' => 'Author',
+            'category_id' => 'Category'
         ];
     }
 
@@ -73,6 +75,8 @@ class Postt extends Model
         if ($this->validate()) {
             $this->posts->title = $this->title;
             $this->posts->description = $this->description;
+            $this->posts->category_id = $this->category_id;
+            $this->posts->author_id = $this->author_id;
             if ($this->posts->tagPost) {
                 $this->posts->removeAllTagValues();
             }
