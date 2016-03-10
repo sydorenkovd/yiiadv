@@ -38,10 +38,13 @@ class PostsController extends Controller
 //            ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['create', 'delete', 'update'],
+                'only' => ['index', 'create', 'delete', 'update', 'edit', 'view'],
+                'denyCallback' => function ($rule, $action) {
+                    throw new ForbiddenHttpException('You are not allowed to access this page');
+                },
                 'rules' => [
                     [
-                        'actions' => ['create', 'delete', 'update'],
+                        'actions' => ['create', 'delete', 'update', 'edit', 'view'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

@@ -22,8 +22,8 @@ foreach($query->tagPost as $tag){
      * that's the thing about relation model, I bind two tables in model Posts
      * and than have access to binding tables by under property, that's sun in dark
      */
- echo Html::a($tag->title, Yii::$app->urlManager
-    ->createUrl(['posts/order-tags', 'tag' => $tag->title]), ['class' => 'btn btn-default btn-sm']);
+ echo Html::a($tag->name, Yii::$app->urlManager
+    ->createUrl(['posts/order-tags', 'tag' => $tag->name]), ['class' => 'btn btn-default btn-sm']);
     }
 /**
  * return array of data from database if we have a object parameter

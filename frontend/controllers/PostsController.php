@@ -91,7 +91,7 @@ class PostsController extends Controller
     public function actionOrderTags($tag){
         $model = Posts::find()->innerJoin('tbl_tagPost',
             'tbl_posts.id = tbl_tagPost.post_id')->innerJoin('tbl_tag', 'tbl_tagPost.tag_id = tbl_tag.id')
-            ->where(['tbl_tag.title' => $tag])->andWhere(['is_moderate' => 1])->all();
+            ->where(['tbl_tag.name' => $tag])->andWhere(['is_moderate' => 1])->all();
         return $this->render('order-tags', ['model' => $model]);
     }
 

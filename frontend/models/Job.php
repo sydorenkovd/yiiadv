@@ -106,7 +106,7 @@ class Job extends ActiveRecord
          * $s - модификатор смены часовых поясов
          */
         $s = 1;
-        if (date('d', $phpdate) == date('d', time()) - $s) {
+        if ((date('d', $phpdate) == date('d', time()) - $s) && (date('m', $phpdate) == date('m', time()))) {
             $yes = "<i style='color: #0097cf'>yesterday </i> ";
             return $yes . $timeAgo . " | " . date("F j, Y, g:i a:", $phpdate);
         }

@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php
                         if($tags->id == $post->id) {
                             foreach($tags->tagPost as $tag){
-                                $arrTags[] = $tag->title;
+                                $arrTags[] = $tag->name;
                             }
                         } ?>
                     <? endforeach; ?>
