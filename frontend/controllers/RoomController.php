@@ -1,13 +1,13 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
 use common\models\Room;
 use yii\web\UploadedFile;
 
-class RoomsController extends Controller
+class RoomController extends Controller
 {
     public function actionCreate()
     {
