@@ -28,6 +28,11 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['contact'],
+                'duration' => 60,
+            ],
 //            'accessOnce' => [
 //                'class' => \frontend\behaviors\AccessOnce::className(),
 //                'actions' => ['interview']
