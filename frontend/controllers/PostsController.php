@@ -27,6 +27,14 @@ class PostsController extends Controller
                     return $q->from('tbl_posts')->max('create_date');
                 },
             ],
+            [
+            'class' => 'yii\filters\HttpCache',
+            'only' => ['details'],
+            'etagSeed' => function ($action, $params) {
+                $post = $this->findModel(\Yii::$app->request->get('id'));
+                return serialize([$post->title, $post->description]);
+            },
+        ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
