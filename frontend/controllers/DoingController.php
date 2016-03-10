@@ -30,6 +30,21 @@ class DoingController extends Controller
 //          ],
         ];
     }
+    public function actionItemDetail()
+    {
+        $title = Yii::$app->request->get('title');
+
+        $data = $this->data();
+
+        $itemFound = null;
+
+        foreach($data as $d)
+        {
+            if($d['title'] == $title) $itemFound = $d;
+        }
+
+        return $this->render('item-detail', ['title' => $title, 'itemFound' => $itemFound]);
+    }
     public function actionIndex(){
        return $this->render('index');
     }
