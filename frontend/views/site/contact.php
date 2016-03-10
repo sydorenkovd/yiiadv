@@ -11,6 +11,7 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?// if($this->beginCache($id, ['enabled' => Yii::$app->request->isGet]) ) : ?>
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -39,6 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
             <?php ActiveForm::end(); ?>
+<!--            --><?// $this->endCache();
+//            endif; ?>
         </div>
     </div>
 
