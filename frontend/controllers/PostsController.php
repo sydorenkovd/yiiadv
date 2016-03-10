@@ -19,6 +19,14 @@ class PostsController extends Controller
     public function behaviors()
     {
         return [
+            [
+                'class' => 'yii\filters\HttpCache',
+                'only' => ['index'],
+                'lastModified' => function ($action, $params) {
+                    $q = new \yii\db\Query();
+                    return $q->from('tbl_posts')->max('create_date');
+                },
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

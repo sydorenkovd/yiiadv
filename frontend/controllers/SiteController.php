@@ -33,6 +33,7 @@ class SiteController extends Controller
                 'only' => ['contact'],
                 'duration' => 60,
             ],
+
 //            'accessOnce' => [
 //                'class' => \frontend\behaviors\AccessOnce::className(),
 //                'actions' => ['interview']

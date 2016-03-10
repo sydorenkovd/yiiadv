@@ -44,7 +44,7 @@ class PostsController extends Controller
                 },
                 'rules' => [
                     [
-                        'actions' => ['create', 'delete', 'update', 'edit', 'view'],
+                        'actions' => ['index','create', 'delete', 'update', 'edit', 'view'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
