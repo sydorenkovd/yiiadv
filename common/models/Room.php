@@ -81,6 +81,6 @@ class Room extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getCustomers(){
-        return $this->hasMany(Customers::className(), ['id' => 'customer_id'])->via('reservations');
+        return $this->hasMany(Customer::className(), ['id' => 'customer_id'])->via('reservations');
     }
 }
