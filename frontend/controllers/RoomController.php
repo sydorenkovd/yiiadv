@@ -9,6 +9,14 @@ use yii\web\UploadedFile;
 
 class RoomController extends Controller
 {
+    public function actionIndex(){
+        $db = Yii::$app->db;
+        $sql = 'select * from room order by id ASC';
+        $rooms = $db->createCommand($sql)->queryAll();
+        return $this->render('index', [
+            'rooms' => $rooms
+        ]);
+    }
     public function actionCreate()
     {
         $model = new Room();
