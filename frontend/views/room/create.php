@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
         Price per day: <?php echo Yii::$app->formatter->asCurrency($model->price_per_day,'EUR'); ?> <br />
         Image:
         <?php if(isset($model->fileImage)) { ?>
-            <img src="<?php echo Url::to('@uploadedfilesdir/'.$model->fileImage->name) ?>" />
+            <img style="width: 200px; height: 200px;" src="<?php echo Url::to('images/'.$model->fileImage->name, true) ?>" />
         <?php } ?>
     </div>
 <?php } ?>

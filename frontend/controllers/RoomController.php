@@ -19,7 +19,7 @@ class RoomController extends Controller
             $model->fileImage = UploadedFile::getInstance($model, 'fileImage');
 
             if ($model->fileImage) {
-                $model->fileImage->saveAs(Yii::getAlias('@uploadedfilesdir').'/'. $model->fileImage->baseName . '.' . $model->fileImage->extension);
+                $model->fileImage->saveAs('images/'. $model->fileImage->baseName . '.' . $model->fileImage->extension);
             }
 
             $modelSaved = true;
