@@ -87,9 +87,9 @@ class PostsController extends Controller
 //        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'model' => $model,
+            compact('searchModel'),
+            compact('dataProvider'),
+            compact('model')
         ]);
     }
     public function actionEdit($id){

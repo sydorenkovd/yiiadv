@@ -3,7 +3,8 @@ use common\models\TagPost;
 use yii\helpers\Html;
 //use yii\helpers\HtmlPurifier;
 ?>
-<div>
+<div class="row">
+    <div class="col-md-4">
 <h2><?= $model->title ?></h2>
 
 <div class="meta">
@@ -25,4 +26,5 @@ use yii\helpers\Html;
 </div>
 
 <?= Html::a('Read', ['posts/details', 'id' => $model->id], ['class' => 'btn btn-lg btn-border-success btn-post']); ?>
+</div>
 </div>
