@@ -79,6 +79,14 @@ class RoomController extends Controller
                 'room' => $room,
                 'lastReservation' => $lastReservation]);
     }
+    public function actionLastReservationForEveryRoom()
+    {
+        $rooms = Room::find()
+            ->joinWith('lastReservation')
+            ->all();
+
+        return $this->render('last-reservation-for-every-room', ['rooms' => $rooms]);
+    }
 }
 
 
