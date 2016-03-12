@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Reservation;
 use Yii;
 use yii\web\Controller;
 use common\models\Room;
@@ -70,4 +71,32 @@ class RoomController extends Controller
 
         return $this->render('index-filtered', ['rooms' => $rooms, 'searchFilter' => $searchFilter]);
     }
+    public  function actionLastReservationRoomId($room_id){
+        $room = Room::findOne($room_id);
+        $lastReservation = $room->lastReservation;
+        return $this->render('last-reservation-room-id',
+            [
+                'room' => $room,
+                'lastReservation' => $lastReservation]);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
