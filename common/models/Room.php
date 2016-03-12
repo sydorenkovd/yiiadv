@@ -62,10 +62,25 @@ class Room extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return $this
+     */
+    public function getLastReservation()
+    {
+        return $this->hasOne(Reservation::className(), ['room_id' => 'id'])
+            ->orderBy('id DESC');
+    }
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getReservations()
     {
         return $this->hasMany(Reservation::className(), ['room_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCustomers(){
+        return $this->hasMany(Customers::className(), ['id' => 'customer_id'])->via('reservations');
     }
 }

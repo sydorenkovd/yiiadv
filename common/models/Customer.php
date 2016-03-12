@@ -55,4 +55,8 @@ class Customer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Reservation::className(), ['customer_id' => 'id']);
     }
+    public function getRooms()
+    {
+        return $this->hasMany(Room::className(), ['id' => 'room_id'])->via('reservations');
+    }
 }
