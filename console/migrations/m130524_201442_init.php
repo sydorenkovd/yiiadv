@@ -116,8 +116,91 @@ class m130524_201442_init extends Migration
             'price_per_day' => $this->decimal(20,2)->defaultValue(null),
             'description' => $this->text()->notNull()
         ]);
-        $this->createTable('', [
-
+        $this->createTable('tbl_author', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->defaultValue(null),
+            'is_moderator' => $this->string(1)->defaultValue(0),
+            'username' => $this->string(30)->notNull(),
+            'email' => $this->string(40)->notNull(),
+            'password_hash' => $this->string()->notNull(),
+            'auth_key' => $this->string()->notNull(),
+            'created_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP'),
+            'updated_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP'),
+            'status' => $this->integer(4)->notNull()
+        ]);
+        $this->createTable('tbl_author_post', [
+        'id_post' => $this->integer()->defaultValue('0')->notNull(),
+        'id_author' => $this->integer()->defaultValue('0')->notNull(),
+        ]);
+        $this->createTable('tbl_category', [
+        'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'create_date' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP')->notNull()
+        ]);
+        $this->createTable('tbl_comment', [
+            'id' => $this->primaryKey(),
+            'pid' => $this->integer()->notNull(),
+            'title' => $this->string()->notNull(),
+            'content' => $this->string()->notNull(),
+            'publish_status' => 'ENUM(`moderate`, `publish`) NOT NULL DEFAULT `publish`',
+            'post_id' => $this->integer()->defaultValue(null),
+            'author_id' => $this->integer()->defaultValue(null)
+        ]);
+        $this->createTable('tbl_customers', [
+        'id' => $this->primaryKey(),
+            'customer_name' => $this->string(100)->notNull(),
+            'zip_code' => $this->string(20)->notNull(),
+            'city' => $this->string(100)->notNull(),
+            'provice' => $this->string(100)->notNull()
+        ]);
+        $this->createTable('tbl_doing', [
+            'id' => $this->primaryKey(),
+            'id_surname' => $this->integer()->notNull(),
+            'name' => $this->string(25)->notNull(),
+            'email' => $this->string(50)->notNull(),
+            'created_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP')->notNull(),
+            'updated_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP')->notNull()
+    ]);
+        $this->createTable('tbl_doing_name', [
+            'id' => $this->primaryKey(),
+            'surname' => $this->string()->notNull()
+        ]);
+        $this->createTable('tbl_emails', [
+            'id' => $this->primaryKey(),
+            'receiver_name' => $this->string(50)->notNull(),
+            'receiver_email' => $this->string(200)->notNull(),
+            'subject' => $this->string()->notNull(),
+            'content' => $this->text()->notNull(),
+            'attachment' => $this->string()->notNull()
+        ]);
+        $this->createTable('tbl_locations', [
+            'id' => $this->primaryKey(),
+            'zip_code' => $this->string(25)->notNull(),
+            'city' => $this->string(100)->notNull(),
+            'province' => $this->string(100)->notNull(),
+            'file' => $this->string()->defaultValue(null),
+            'logo' => $this->string()->defaultValue(null)
+        ]);
+        $this->createTable('tbl_posts', [
+            'id' => $this->primaryKey(),
+            'author_id' => $this->integer()->defaultValue(null),
+            'category_id' => $this->integer()->defaultValue(null),
+            'title' => $this->string()->defaultValue('sydorenkovd')->notNull(),
+            'description' => $this->text()->notNull(),
+            'logo' => $this->string()->notNull(),
+            'create_date' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP'),
+            'image' => $this->string(30)->defaultValue(null),
+            'is_moderate' => $this->string(1)->defaultValue('0')->notNull(),
+            'publish_status' => 'ENUM(`draft`, `published`) NOT NULL DEFAULT `draft`',
+        ]);
+        $this->createTable('tbl_tag', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'frequency' => $this->integer(6)->defaultValue('0')->notNull()
+        ]);
+        $this->createTable('tbl_tagPost', [
+            'tag_id' => $this->integer()->defaultValue(null),
+            'post_id' => $this->integer()->defaultValue(null)
         ]);
     }
 
