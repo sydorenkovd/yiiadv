@@ -153,18 +153,18 @@ class m130524_201442_init extends Migration
             'city' => $this->string(100)->notNull(),
             'provice' => $this->string(100)->notNull()
         ]);
-        $this->createTable('tbl_doing', [
-            'id' => $this->primaryKey(),
-            'id_surname' => $this->integer()->notNull(),
-            'name' => $this->string(25)->notNull(),
-            'email' => $this->string(50)->notNull(),
-            'created_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP')->notNull(),
-            'updated_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP')->notNull()
-    ]);
-        $this->createTable('tbl_doing_name', [
-            'id' => $this->primaryKey(),
-            'surname' => $this->string()->notNull()
-        ]);
+//        $this->createTable('tbl_doing', [
+//            'id' => $this->primaryKey(),
+//            'id_surname' => $this->integer()->notNull(),
+//            'name' => $this->string(25)->notNull(),
+//            'email' => $this->string(50)->notNull(),
+//            'created_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP')->notNull(),
+//            'updated_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP')->notNull()
+//    ]);
+//        $this->createTable('tbl_doing_name', [
+//            'id' => $this->primaryKey(),
+//            'surname' => $this->string()->notNull()
+//        ]);
         $this->createTable('tbl_emails', [
             'id' => $this->primaryKey(),
             'receiver_name' => $this->string(50)->notNull(),
