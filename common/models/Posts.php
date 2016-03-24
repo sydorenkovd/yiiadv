@@ -66,6 +66,15 @@ class Posts extends ActiveRecord
             [['image'], 'string', 'max' => 30],
         ];
     }
+    public function fields()
+    {
+        return [
+            'title' => $this->title,
+            'description' => function () {
+                return $this->description;
+            },
+        ];
+    }
 public function checkDate($attribute, $params){
     $today = date('Y-m-d H:i:s');
     $selectedDate = $this->create_date;
