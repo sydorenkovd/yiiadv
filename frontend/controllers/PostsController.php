@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
+
 /**
  * PostsController implements the CRUD actions for Posts model.
  */
@@ -28,13 +29,13 @@ class PostsController extends Controller
                 },
             ],
             [
-            'class' => 'yii\filters\HttpCache',
-            'only' => ['details'],
-            'etagSeed' => function ($action, $params) {
-                $post = $this->findModel(\Yii::$app->request->get('id'));
-                return serialize([$post->title, $post->description]);
-            },
-        ],
+                'class' => 'yii\filters\HttpCache',
+                'only' => ['details'],
+                'etagSeed' => function ($action, $params) {
+                    $post = $this->findModel(\Yii::$app->request->get('id'));
+                    return serialize([$post->title, $post->description]);
+                },
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -74,10 +75,11 @@ class PostsController extends Controller
             'tags' => $tags
         ]);
     }
+
     public function actionIndex()
     {
         $posts = new Posts();
-        $model = Posts::find()->where(['is_moderate' => 1])->orderBy(['create_date' => SORT_DESC ]);
+        $model = Posts::find()->where(['is_moderate' => 1])->orderBy(['create_date' => SORT_DESC]);
         $dataProvider = new ActiveDataProvider([
             'query' => $model,
             'pagination' => [
@@ -87,7 +89,7 @@ class PostsController extends Controller
 //        $tags = Tags::find();
         return $this->render('index', [
 //            'posts' => $posts->getPublishedPosts(),
-        'data' => $dataProvider,
+            'data' => $dataProvider,
             'model' => $model,
 //            'tags' => $tags
         ]);
@@ -104,10 +106,14 @@ class PostsController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
-    public function actionOrderTags($tag){
-        $model = Posts::find()->innerJoin('tbl_tagPost',
-            'tbl_posts.id = tbl_tagPost.post_id')->innerJoin('tbl_tag', 'tbl_tagPost.tag_id = tbl_tag.id')
-            ->where(['tbl_tag.name' => $tag])->andWhere(['is_moderate' => 1])->all();
+
+    public function actionOrderTags($tag)
+    {
+        $model = Posts::find()
+            ->innerJoin('tbl_tagPost', 'tbl_posts.id = tbl_tagPost.post_id')
+            ->innerJoin('tbl_tag', 'tbl_tagPost.tag_id = tbl_tag.id')
+            ->where(['tbl_tag.name' => $tag])
+            ->andWhere(['is_moderate' => 1])->all();
         return $this->render('order-tags', ['model' => $model]);
     }
 
@@ -119,7 +125,9 @@ class PostsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    public function actionDetails($id){
+
+    public function actionDetails($id)
+    {
 //        $test = Posts::getTest();
         $query = Posts::findOne($id);
 
