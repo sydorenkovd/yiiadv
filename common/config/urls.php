@@ -1,4 +1,4 @@
 <?php
 return [
-    'posts' => 'posts/index'
+    // 'posts' => 'posts/index'
 ];
