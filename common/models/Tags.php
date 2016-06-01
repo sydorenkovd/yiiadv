@@ -40,7 +40,7 @@ class Tags extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Title',
+            'name' => 'Name',
             'frequency' => 'Frequency'
         ];
     }

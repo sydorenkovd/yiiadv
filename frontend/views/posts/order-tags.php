@@ -3,7 +3,7 @@
 use common\models\Author;
 $this->title = 'Tags';
 $this->params['breadcrumbs'][] = ['label' => 'Posts', 'url' => 'index'];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Tags', 'url' => 'http://admin.yiiadv/tag/index'];
 $this->params['breadcrumbs'][] = Yii::$app->request->get('tag');
 if($model) : ?>
     <ul class="list-group">
