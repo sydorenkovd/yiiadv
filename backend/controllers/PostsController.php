@@ -88,7 +88,7 @@ class PostsController extends Controller
 
         return $this->render('index', [
             compact('searchModel'),
-            compact('dataProvider'),
+            'dataProvider' => $dataProvider,
             compact('model')
         ]);
     }
